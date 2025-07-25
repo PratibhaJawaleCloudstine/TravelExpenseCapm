@@ -1,0 +1,146 @@
+<mvc:View controllerName="travel.travelexpenseui.controller.CreateTravelRequest"
+  xmlns:mvc="sap.ui.core.mvc"
+  xmlns="sap.m"
+  xmlns:core="sap.ui.core" displayBlock="true">
+
+  <Page title="Create Travel Request">
+    <content>
+      <VBox class="sapUiSmallMargin" width="50%">
+
+        <HBox xmlns="sap.m" alignItems="Center" justifyContent="Center" class="stepBar">
+
+          <VBox alignItems="Center">
+            <Text text="1" class="stepCircleActive" />
+            <Text text="General Data" class="stepTextActive" />
+          </VBox>
+
+          <Text text="―" class="stepLine" />
+
+          <VBox alignItems="Center">
+            <Text text="2" class="stepCircleCurrent"/>
+            <Text text="Review and Send" class="stepTextCurrent" />
+          </VBox>
+
+          <Text text="―" class="stepLine" />
+
+          <VBox alignItems="Center">
+            <Text text="3" class="stepCircleDisabled" />
+            <Text text="Completed" class="stepTextDisabled" />
+          </VBox>
+
+        </HBox>
+
+        <Title text="General Data" level="H2" />
+        <HBox class="sapUiSmallMarginTop" width="100%">
+          <VBox class="sapUiSmallMarginEnd" width="50%">
+            <Label text="Start Date" required="true"/>
+            <DateTimePicker id="startDate" change="onDateChange"/>
+          </VBox>
+          <VBox width="50%">
+            <Label text="End Date" required="true"/>
+            <DateTimePicker id="endDate" change="onDateChange"/>
+          </VBox>
+        </HBox>
+
+        <HBox class="sapUiSmallMarginTop" width="100%">
+          <VBox class="sapUiSmallMarginEnd" width="50%">
+            <Label text="Departure" required="true"/>
+            <ComboBox id="departure" width="100%">
+              <items>
+                <core:Item key="1" text="Departure from First Workplace"/>
+                <core:Item key="2" text="Departure from Home"/>
+              </items>
+            </ComboBox>
+          </VBox>
+          <VBox width="50%">
+            <Label text="Arrival" required="true"/>
+            <ComboBox id="arrival" width="100%">
+              <items>
+                <core:Item key="1" text="Arrival at First Workplace"/>
+                <core:Item key="1" text="Arrival at Home"/>
+              </items>
+            </ComboBox>
+          </VBox>
+        </HBox>
+        <HBox >
+
+          <VBox class="sapUiSmallMarginTop">
+            <Label text="Posting Date" required="true"/>
+            <DatePicker id="postingDate" value="{= ${now} }"/>
+          </VBox>
+
+          <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+            <Label text="Self Travel" required="true"/>
+            <ComboBox id="selfTravel" selectedKey="Yes">
+              <items>
+                <core:Item key="Yes" text="Yes"/>
+                <core:Item key="No" text="No"/>
+              </items>
+            </ComboBox>
+          </VBox>
+
+
+          <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+            <Label text="Place of Visit" required="true"/>
+            <ComboBox id="placeOfVisitComboBox" items="{
+                path: 'cities>/',
+                templateShareable: false
+            }" placeholder="Select or enter a city" change="onChangePlace" width="100%">
+              <core:Item key="{cities>cityId}" text="{cities>cityName}" />
+            </ComboBox>
+          </VBox>
+
+        </HBox>
+
+        <Title text="Additional Information" level="H2" class="sapUiMediumMarginTop"/>
+        <HBox >
+          <VBox class="sapUiSmallMarginTop">
+            <Label text="Travel Type" required="true"/>
+            <ComboBox id="travelType">
+              <items>
+                <core:Item key="BusinessDomestic" text="Business Travel - Domestic"/>
+                <core:Item key="BusinessInternational" text="Business Travel - International"/>
+              </items>
+            </ComboBox>
+          </VBox>
+
+          <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+            <Label text="Purpose of Travel"/>
+            <Input id="purposeOfTravel" />
+          </VBox>
+
+          <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+            <Label text="Estimated Costs"/>
+            <HBox >
+              <Input id="estimatedCosts" type="Number"/>
+              <Label text="INR" class=" sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+            </HBox>
+          </VBox>
+        </HBox>
+        <VBox class="sapUiSmallMarginTop">
+          <Label text="Additional Travellers (non-employees)" />
+          <Input id="additionalTravellers" placeholder="Name/Age/Sex"/>
+        </VBox>
+
+        <VBox class="sapUiSmallMarginTop">
+          <Label text="Advances (Only for International Trip)" />
+          <Input id="advances" value="0.00 Indian Rupee" />
+        </VBox>
+
+        <VBox class="sapUiSmallMarginTop">
+          <Label text="Cost Assignment"/>
+          <Text id="costAssignment" text="100.00 % Cost Center 901010013 (HUMAN RESOURCES), Funds Center 901010013" />
+        </VBox>
+
+        <Title text="Travel Services" level="H2" class="sapUiSmallMarginTop"/>
+        <Text text="No travel services requested" />
+
+        <HBox justifyContent="End" class="sapUiSmallMarginTop">
+          <Button text="Review" press="onReviewTravelRequest" class="sapUiSmallMarginEnd"/>
+          <Button text="Save Draft" press="onSaveDraft"/>
+        </HBox>
+
+      </VBox>
+    </content>
+  </Page>
+</mvc:View>

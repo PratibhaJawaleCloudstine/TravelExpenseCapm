@@ -1,0 +1,62 @@
+/* Enter your custom styles here */
+.stepBar {
+    margin: 1rem;
+  }
+  
+  .stepCircleActive {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    background-color: white;
+    color: #0a6ed1;
+    border: 2px solid #0a6ed1;
+    font-weight: bold;
+    padding-left: 7px;
+  }
+  
+  .stepCircleCurrent {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    border: 1px dashed rgb(84, 79, 79);
+    color: #0a6ed1;
+    padding-left: 7px;
+  }
+  
+  .stepCircleDisabled {
+    width: 2rem;
+    height: 2rem;
+    line-height: 2rem;
+    text-align: center;
+    border-radius: 50%;
+    background-color: transparent;
+    color: rgb(141, 130, 130);
+    padding-left: 7px;
+  }
+  
+  .stepTextActive {
+    color: #0a6ed1;
+    font-weight: bold;
+    margin-top: 0.2rem;
+  }
+  
+  .stepTextCurrent {
+    color: rgb(84, 79, 79);
+    margin-top: 0.2rem;
+  }
+  
+  .stepTextDisabled {
+    color: rgb(141, 130, 130);
+    margin-top: 0.2rem;
+  }
+  
+  .stepLine {
+    padding: 0 1rem;
+    color: rgb(141, 130, 130);
+    font-weight: bold;
+  }
+  

@@ -1,0 +1,23 @@
+[
+    { "cityId": "DEL", "cityName": "Delhi" },
+    { "cityId": "MUM", "cityName": "Mumbai" },
+    { "cityId": "BLR", "cityName": "Bangalore" },
+    { "cityId": "HYD", "cityName": "Hyderabad" },
+    { "cityId": "CHE", "cityName": "Chennai" },
+    { "cityId": "KOL", "cityName": "Kolkata" },
+    { "cityId": "PUN", "cityName": "Pune" },
+    { "cityId": "AHM", "cityName": "Ahmedabad" },
+    { "cityId": "LKO", "cityName": "Lucknow" },
+    { "cityId": "JAI", "cityName": "Jaipur" },
+    { "cityId": "CBE", "cityName": "Coimbatore" },
+    { "cityId": "BHU", "cityName": "Bhubaneswar" },
+    { "cityId": "TRV", "cityName": "Thiruvananthapuram" },
+    { "cityId": "BPL", "cityName": "Bhopal" },
+    { "cityId": "PAT", "cityName": "Patna" },
+    { "cityId": "VZG", "cityName": "Visakhapatnam" },
+    { "cityId": "NGP", "cityName": "Nagpur" },
+    { "cityId": "SUR", "cityName": "Surat" },
+    { "cityId": "IND", "cityName": "Indore" },
+    { "cityId": "RPR", "cityName": "Raipur" }
+  ]
+  
