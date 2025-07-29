@@ -9,6 +9,7 @@ modules:
     requires:
       - name: TravelExpenses-auth
       - name: TravelExpenses-db
+      - name: TravelExpenses-destination-service
     provides:
       - name: srv-api
         properties:
@@ -106,20 +107,34 @@ resources:
     type: org.cloudfoundry.managed-service
     parameters:
       config:
-        HTML5Runtime_enabled: false
+        
         init_data:
           instance:
             destinations:
-              - Authentication: NoAuthentication
-                Name: ui5
-                ProxyType: Internet
-                Type: HTTP
+              - Name: ui5
                 URL: https://ui5.sap.com
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: NoAuthentication
+
+              - Name: BPA_API_DEST
+                URL: https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com
+                Type: HTTP
+                ProxyType: Internet
+                Authentication: OAuth2ClientCredentials
+                clientId: sb-1749340c-762a-49a9-a736-044218724f90!b446368|xsuaa!b49390
+                clientSecret: c650ce5e-e96e-442d-b677-131c790cb968$NYeF7MQq-IvrQ5wYbNhbZ7lf69N2xnojKD9RiBnIac0=
+                tokenServiceURL: https://6440fac5trial.authentication.us10.hana.ondemand.com/oauth/token
+                HTML5.DynamicDestination: true
+                WebIDEEnabled: true
             existing_destinations_policy: update
         version: 1.0.0
       service: destination
       service-name: TravelExpenses-destination-service
       service-plan: lite
+    requires:
+      - name: TravelExpenses-auth 
+  
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
