@@ -24,6 +24,18 @@
           "odataVersion": "4.0"
         }
       }
+    },
+    "crossNavigation": {
+      "inbounds": {
+        "travelexpense-ui-display": {
+          "semanticObject": "travelexpense-ui",
+          "action": "display",
+          "signature": {
+            "parameters": {},
+            "additionalParameters": "allowed"
+          }
+        }
+      }
     }
   },
   "sap.ui": {
@@ -104,7 +116,7 @@
           "pattern": "ReviewTravelScreen/{travelId}",
           "name": "ReviewTravelScreen",
           "target": "ReviewTravelScreen"
-      }
+        }
       ],
       "targets": {
         "TargetCreateTravelRequest": {
@@ -115,7 +127,7 @@
           "id": "ReviewTravelScreen",
           "name": "ReviewTravelScreen",
           "viewLevel": 2
-    }
+        }
       }
     },
     "rootView": {
@@ -124,5 +136,9 @@
       "id": "App",
       "async": true
     }
+  },
+  "sap.cloud": {
+    "public": true,
+    "service": "TravelExpenses.service"
   }
 }

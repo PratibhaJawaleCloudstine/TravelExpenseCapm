@@ -34,15 +34,19 @@
   "cds": {
     "requires": {
       "destination": {
-        "kind": "destination", 
+        "kind": "destination",
         "vcap": {
           "label": "destination",
           "plan": "lite"
         }
       },
-    "[production]": {
-        "auth": "xsuaa"
-      }
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-runtime": true,
+      "workzone": true
     }
   }
 }
