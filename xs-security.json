@@ -2,45 +2,7 @@
   "xsappname": "TravelExpenses-6440fac5trial-dev",
   "tenant-mode": "dedicated",
   "authorities-inheritance": false,
-  "scopes": [
-    {
-      "name": "$XSAPPNAME.workflow_instance_start",
-      "description": "Start Workflow Instances"
-    },
-    {
-      "name": "$XSAPPNAME.Employee",
-      "description": "Access for Employee"
-    },
-    {
-      "name": "$XSAPPNAME.Approver",
-      "description": "Access for Approver"
-    }
-  ],
-  "authorities": [
-    "$XSAPPNAME.workflow_instance_start"
-  ],
-  "role-templates": [
-    {
-      "name": "WorkflowInitiator",
-      "description": "Can start workflows",
-      "scope-references": [
-        "$XSAPPNAME.workflow_instance_start"
-      ]
-    },
-    {
-      "name": "Employee",
-      "description": "Role template for Employees",
-      "scope-references": [
-        "$XSAPPNAME.Employee"
-      ]
-    },
-    {
-      "name": "Approver",
-      "description": "Role template for Approvers",
-      "scope-references": [
-        "$XSAPPNAME.Approver"
-      ]
-    }
-  ],
+  "scopes": [],
+  "role-templates": [],
   "attributes": []
 }

@@ -146,7 +146,7 @@ sap.ui.define([
           contentType: "application/json",
           data: JSON.stringify({ travelData: JSON.stringify(travelData) }),
           success: function (response) {
-            sap.m.MessageToast.show("Workflow started.");
+            sap.m.MessageToast.show("Travel request " + travelId + " is send for approval.");
           },
           error: function (xhr, status, error) {
             sap.m.MessageBox.error("Failed to start workflow: " + xhr.responseText);
@@ -243,14 +243,42 @@ sap.ui.define([
 
         // Step 3: Submit the batch
         oModel.submitBatch("travelGroup").then(() => {
-          if (this.selectedOption === "draft") {
-            sap.m.MessageToast.show("Travel request " + travelId + " is saved successfully.");
-          } else if (this.selectedOption === "SaveApprove") {
-            sap.m.MessageToast.show("Travel request " + travelId + " is saved successfully and send for approval.");
-          } else if (this.selectedOption === "Approve") {
-            sap.m.MessageToast.show("Travel request " + travelId + " is send for approval.");
-          }
+              //start workflow (Build process)
+              const travelData = {
+                id: travelId,
+                employee: "EMP001",
+                startdate: formattedStartdate,
+                enddate: formattedEnddate,
+                postingdate: formattedPostingDate,
+                selftravel: selfTravel,
+                placeofvisit: placeOfVisit,
+                estimatedcost: estimatedCosts,
+                action: "1",
+                createdat: new Date().toISOString(),
+                departure: departure,
+                arrival: arrival,
+                traveltype: travelType,
+                purposeoftravel: purposeOfTravel,
+                additionaltravellers: additionalTravellers,
+                advances: advances,
+                costassignment: costAssignment,
+                status: travelStatus
+              };
+            
+              $.ajax({
+                url: "/odata/v4/travel/startTravelWorkflow",
+                method: "POST",
+                contentType: "application/json",
+                data: JSON.stringify({ travelData: JSON.stringify(travelData) }),
+                success: function (response) {
+                  sap.m.MessageToast.show("Travel request " + travelId + " is saved and send for approval.");
+                },
+                error: function (xhr, status, error) {
+                  sap.m.MessageBox.error("Failed to start workflow: " + xhr.responseText);
+                }
+              });
 
+      
         }).catch((oError) => {
           sap.m.MessageBox.error("Error saving travel request: " + oError.message);
         }).finally(() => {
