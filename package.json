@@ -11,6 +11,7 @@
     "@sap-cloud-sdk/http-client": "^4.1.0",
     "@sap/cds": "^9",
     "@sap/cds-common-content": "^3.0.1",
+    "@sap/hana-client": "^2.25.29",
     "@sap/xssec": "^4",
     "express": "^4"
   },

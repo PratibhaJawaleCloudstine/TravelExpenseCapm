@@ -86,7 +86,7 @@ resources:
           redirect-uris:
             - https://*~{app-api/app-uri}/**
         tenant-mode: dedicated
-        xsappname: TravelExpenses-6440fac5trial-dev
+        xsappname: TravelExpenses-83f357a0trial-dev
       path: ./xs-security.json
       service: xsuaa
       service-plan: application
@@ -122,9 +122,9 @@ resources:
                 Type: HTTP
                 ProxyType: Internet
                 Authentication: OAuth2ClientCredentials
-                clientId: sb-1749340c-762a-49a9-a736-044218724f90!b446368|xsuaa!b49390
-                clientSecret: c650ce5e-e96e-442d-b677-131c790cb968$NYeF7MQq-IvrQ5wYbNhbZ7lf69N2xnojKD9RiBnIac0=
-                tokenServiceURL: https://6440fac5trial.authentication.us10.hana.ondemand.com/oauth/token
+                clientId: sb-f207c696-fa9d-4541-9695-99004cfe7ea9!b498273|xsuaa!b49390
+                clientSecret: cf0c38a3-dcaa-4aa9-9196-979450ec1814$D1TOeVbc9PBCs8ZhjkADJ4BQMQYPjzqoTQjhLoCamZs=
+                tokenServiceURL: https://83f357a0trial.authentication.us10.hana.ondemand.com/oauth/token
                 HTML5.DynamicDestination: true
                 WebIDEEnabled: true
             existing_destinations_policy: update
