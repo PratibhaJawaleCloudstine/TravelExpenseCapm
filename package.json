@@ -11,17 +11,20 @@
     "@sap-cloud-sdk/http-client": "^4.1.0",
     "@sap/cds": "^9",
     "@sap/cds-common-content": "^3.0.1",
-    "@sap/hana-client": "^2.25.29",
     "@sap/xssec": "^4",
-    "express": "^4"
+    "express": "^4",
+    "form-data": "4.0.4"
   },
   "engines": {
     "node": ">=20"
   },
+  "resolutions": {
+    "form-data": "4.0.4"
+  },
   "devDependencies": {
     "@cap-js/cds-types": "^0.13.0",
     "@cap-js/sqlite": "^2",
-    "@sap/cds-dk": ">=8",
+    "@sap/cds-dk": "^9.2.0",
     "mbt": "^1.2.29",
     "rimraf": "^5.0.5"
   },

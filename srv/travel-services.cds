@@ -19,6 +19,7 @@ type TravelRequests :{
       advances: String;
       costAssignment: String;
       status: String; //review, draft, approval
+      Approvedstatus: String; //Approved, Rejected
 }
 
 
@@ -30,4 +31,6 @@ service TravelService {
   action startTravelWorkflow(travelData: LargeString) returns String;
 
 
+  // Action exposed as REST endpoint: /TravelService/updateTravelStatus
+  action updateTravelStatus(ID: UUID, Approvedstatus: String) returns String;
 }

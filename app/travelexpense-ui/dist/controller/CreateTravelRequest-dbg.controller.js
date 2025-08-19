@@ -204,7 +204,7 @@ sap.ui.define([
 
     onSaveDraft: function () {
       var oModel = this.getView().getModel(); // OData V4 model
-      this.getView().setBusy(true);
+      
       const oView = this.getView();
       const startdate = oView.byId("startDate").getDateValue();
       if (!startdate || isNaN(startdate.getTime())) {
@@ -286,7 +286,7 @@ sap.ui.define([
        var travelId = crypto.randomUUID();
        var travelStatus = "Draft";
 
-
+      this.getView().setBusy(true);
 
       // Step 1: Create binding to the entity set (TravelRequests)
       var oListBinding = oModel.bindList("/TravelRequests", undefined, undefined, undefined, {

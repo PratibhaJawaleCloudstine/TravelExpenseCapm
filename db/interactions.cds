@@ -20,4 +20,5 @@ entity TravelRequests {
       advances: String;
       costAssignment: String;
       status: String; //review, draft, approval
+      Approvedstatus: String; //Approved, Rejected
 }

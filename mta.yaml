@@ -21,7 +21,7 @@ modules:
       builder: npm-ci
   - name: TravelExpenses-db-deployer
     type: hdb
-    path: gen/db
+    path: db
     requires:
       - name: TravelExpenses-db
     parameters:
