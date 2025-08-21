@@ -26,7 +26,7 @@ sap.ui.define([
 
     _onRouteMatched: function (oEvent) {
       this.travelId = oEvent.getParameter("arguments").travelId;
-      console.log("Loaded Travel ID:", this.travelId);
+      console.log("Loaded Travel ID in _onRouteMatched :", this.travelId);
       if (this.travelId !== "-") {
         //Enable / disable radio according to status
         this.byId("id_saveDraftRadio").setEnabled(false);
@@ -44,11 +44,8 @@ sap.ui.define([
         const oContextBinding = oModel.bindContext(`/TravelRequests(${this.travelId})`);
 
         oContextBinding.requestObject().then((oData) => {
-          console.log("Single travel request data:", oData);
-
           const oJSONModel = new sap.ui.model.json.JSONModel(oData);
           this.getOwnerComponent().setModel(oJSONModel, "travelData");
-          console.log(oJSONModel);
 
         }).catch((oError) => {
           console.error("Failed to fetch specific travel request:", oError);
@@ -56,9 +53,7 @@ sap.ui.define([
         });
       } else {
         const oModel = this.getOwnerComponent().getModel("travelData");
-        console.log("traveiID " + this.travelId);
-        console.log(oModel);
-
+       
         //Enable / disable radio according to status
         this.byId("id_saveDraftRadio").setEnabled(true);
         this.byId("id_saveAndApproveRadio").setEnabled(true);
@@ -72,11 +67,10 @@ sap.ui.define([
       }
 
       const travelData = this.getOwnerComponent().getModel("travelData");
-      console.log("travelData");
+      console.log("travelData -----------------");
       console.log(travelData);
 
       const formattedStartdate = travelData.getProperty("/startDate");
-      console.log("formattedStartdate: " + formattedStartdate);
     },
 
     onActionSelect: function (oEvent) {
@@ -120,7 +114,7 @@ sap.ui.define([
       if (this.selectedOption === "Approve") {
       //start workflow (Build process)
         const travelData = {
-          id: travelId,
+          id: this.travelId,
           employee: "EMP001",
           startdate: formattedStartdate,
           enddate: formattedEnddate,
@@ -139,6 +133,9 @@ sap.ui.define([
           costassignment: costAssignment,
           status: travelStatus
         };
+
+        console.log("travelData sent for approval ------------------");
+        console.log(travelData);
       
         $.ajax({
           url: "/odata/v4/travel/startTravelWorkflow",
@@ -146,7 +143,7 @@ sap.ui.define([
           contentType: "application/json",
           data: JSON.stringify({ travelData: JSON.stringify(travelData) }),
           success: function (response) {
-            sap.m.MessageToast.show("Travel request " + travelId + " is send for approval.");
+            sap.m.MessageToast.show("Travel request " + this.travelId + " is send for approval.");
           },
           error: function (xhr, status, error) {
             sap.m.MessageBox.error("Failed to start workflow: " + xhr.responseText);
