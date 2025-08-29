@@ -34,9 +34,10 @@ modules:
         group: destinations
         properties:
           forwardAuthToken: true
-          name: srv-api
+          name: TravelExpenses
           url: ~{srv-url}
       - name: TravelExpenses-auth
+      - name: TravelExpenses-repo-runtime
       - name: TravelExpenses-destination-service
         group: destinations
         properties:
@@ -52,6 +53,7 @@ modules:
       disk-quota: 256M
       keep-existing-routes: true
       memory: 256M
+
   - name: TravelExpenses-app-content
     type: com.sap.application.content
     path: .
@@ -59,6 +61,8 @@ modules:
       - name: TravelExpenses-repo-host
         parameters:
           content-target: true
+    parameters:
+      sap.cloud.service: TravelExpenses
     build-parameters:
       build-result: resources
       requires:
@@ -69,14 +73,90 @@ modules:
   - name: traveltravelexpenseui
     type: html5
     path: app/travelexpense-ui
+    parameters:
+      sap.cloud.service: TravelExpenses
     build-parameters:
       build-result: dist
       builder: custom
       commands:
         - npm install
         - npm run build:cf
+        - npm ci
+        - npm run build
       supported-platforms:
         []
+
+  - name: TravelExpenses-app-deployer
+    type: com.sap.application.content
+    path: gen
+    requires:
+      - name: TravelExpenses-auth
+      - name: srv-api
+      - name: TravelExpenses-html5-repo-host
+        parameters:
+          content-target: true
+          config:
+            HTML5Runtime_enabled: true
+      - name: TravelExpenses-repo-host
+    build-parameters:
+      build-result: app/
+      requires:
+        - name: TravelExpensestravelexpenseui
+          artifacts:
+            - travelexpense-ui.zip
+          target-path: app/
+        - name: traveltravelexpenseui
+    parameters:
+      config:
+        HTML5Runtime_enabled: true
+        init_data:
+          instance:
+            existing_destinations_policy: update
+            destinations:
+              - Name: srv-api
+                URL: ~{srv-api/srv-url}
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+                HTML5.ForwardAuthToken: true
+                HTML5.DynamicDestination: true
+              - Name: ui5
+                URL: https://ui5.sap.com
+                Authentication: NoAuthentication
+                Type: HTTP
+                ProxyType: Internet
+
+  - name: TravelExpenses-destinations
+    type: com.sap.application.content
+    requires:
+      - name: TravelExpenses-auth
+        parameters:
+          service-key:
+            name: TravelExpenses-auth-key
+      - name: TravelExpenses-html5-repo-host
+        parameters:
+          service-key:
+            name: TravelExpenses-html5-repo-host-key
+      - name: srv-api
+      - name: TravelExpenses-destination
+        parameters:
+          content-target: true
+    build-parameters:
+      no-source: true
+    parameters:
+      content:
+        instance:
+          existing_destinations_policy: update
+          destinations:
+            - Name: TravelExpenses-html5-repository
+              ServiceInstanceName: TravelExpenses-html5-repo-host
+              ServiceKeyName: TravelExpenses-html5-repo-host-key
+              sap.cloud.service: TravelExpenses.service
+            - Name: TravelExpenses-auth
+              Authentication: OAuth2UserTokenExchange
+              ServiceInstanceName: TravelExpenses-auth
+              ServiceKeyName: TravelExpenses-auth-key
+              sap.cloud.service: TravelExpenses.service
 resources:
   - name: TravelExpenses-auth
     type: org.cloudfoundry.managed-service
@@ -86,7 +166,7 @@ resources:
           redirect-uris:
             - https://*~{app-api/app-uri}/**
         tenant-mode: dedicated
-        xsappname: TravelExpenses-83f357a0trial-dev
+        xsappname: TravelExpenses-${org}-${space}
       path: ./xs-security.json
       service: xsuaa
       service-plan: application
@@ -103,11 +183,19 @@ resources:
       service: html5-apps-repo
       service-name: TravelExpenses-html5-service
       service-plan: app-host
+  - name: TravelExpenses-repo-runtime
+    type: org.cloudfoundry.managed-service
+    parameters:
+      service: html5-apps-repo
+      service-plan: app-runtime
+      config:
+        sap.cloud.service: TravelExpenses # link runtime to service
+
   - name: TravelExpenses-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
       config:
-        
+
         init_data:
           instance:
             destinations:
@@ -122,19 +210,31 @@ resources:
                 Type: HTTP
                 ProxyType: Internet
                 Authentication: OAuth2ClientCredentials
-                clientId: sb-f207c696-fa9d-4541-9695-99004cfe7ea9!b498273|xsuaa!b49390
-                clientSecret: cf0c38a3-dcaa-4aa9-9196-979450ec1814$D1TOeVbc9PBCs8ZhjkADJ4BQMQYPjzqoTQjhLoCamZs=
+                clientId: sb-TravelExpenses-83f357a0trial-dev!t498273
+                clientSecret: b6715852-1363-456b-8ad0-27d34216275d$CtFNuxLDXeu2qQF-APnrlpeabfbKzsI62he_Yf5S8uM=
                 tokenServiceURL: https://83f357a0trial.authentication.us10.hana.ondemand.com/oauth/token
                 HTML5.DynamicDestination: true
                 WebIDEEnabled: true
+
+              - Name: TravelExpenses-html5-runtime
+                Authentication: OAuth2UserTokenExchange
+                ProxyType: Internet
+                Type: HTTP
+                URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com
+                HTML5.RuntimeEnabled: true
+                sap.cloud.service: TravelExpenses
             existing_destinations_policy: update
         version: 1.0.0
+        HTML5Runtime_enabled: true
       service: destination
       service-name: TravelExpenses-destination-service
       service-plan: lite
     requires:
-      - name: TravelExpenses-auth 
-  
+      - name: TravelExpenses-auth
+      - name: srv-api # must be used in xs-app.json as well
+        url: ~{srv-url}
+        forwardAuthToken: true
+
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true

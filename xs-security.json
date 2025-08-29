@@ -1,8 +1,32 @@
 {
-  "xsappname": "TravelExpenses",
+  "xsappname": "TravelExpenses-83f357a0trial-dev",
   "tenant-mode": "dedicated",
   "authorities-inheritance": false,
-  "scopes": [],
-  "role-templates": [],
+  "scopes": [
+    {
+      "name": "$XSAPPNAME.Viewer",
+      "description": "View travel expenses"
+    },
+    {
+      "name": "$XSAPPNAME.Admin",
+      "description": "Administer travel expenses"
+    }
+  ],
+  "role-templates": [
+    {
+      "name": "Viewer",
+      "description": "Viewer role",
+      "scope-references": [
+        "$XSAPPNAME.Viewer"
+      ]
+    },
+    {
+      "name": "Admin",
+      "description": "Admin role",
+      "scope-references": [
+        "$XSAPPNAME.Admin"
+      ]
+    }
+  ],
   "attributes": []
 }

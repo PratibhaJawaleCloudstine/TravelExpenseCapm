@@ -18,7 +18,7 @@ module.exports = async function (srv) {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktMDA5MzA4ZWU5ZiIsInR5cCI6IkpXVCIsImppZCI6ICJVVDR0Ly9pdVpFaHZpTFNBOUI4elFtWll3d2F3RlBPTmxsZzloT0srMlVJPSJ9.eyJqdGkiOiJkNWI2YjBkMDVhZDc0MWFmYWVjZGI5YWUzZDIxM2VlNiIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI0MzhjMTVkNS01ZTdhLTQwNWUtODIzYS0wZTcwYmRjMjM4MDMiLCJ6ZG4iOiI4M2YzNTdhMHRyaWFsIiwic2VydmljZWluc3RhbmNlaWQiOiJmMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkifSwic3ViIjoic2ItZjIwN2M2OTYtZmE5ZC00NTQxLTk2OTUtOTkwMDRjZmU3ZWE5IWI0OTgyNzN8eHN1YWEhYjQ5MzkwIiwiYXV0aG9yaXRpZXMiOlsidWFhLnJlc291cmNlIl0sInNjb3BlIjpbInVhYS5yZXNvdXJjZSJdLCJjbGllbnRfaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJjaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJhenAiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjMwMDIwZmQwIiwiaWF0IjoxNzU1NzU0MTgxLCJleHAiOjE3NTU3OTczODEsImlzcyI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL29hdXRoL3Rva2VuIiwiemlkIjoiNDM4YzE1ZDUtNWU3YS00MDVlLTgyM2EtMGU3MGJkYzIzODAzIiwiYXVkIjpbInVhYSIsInNiLWYyMDdjNjk2LWZhOWQtNDU0MS05Njk1LTk5MDA0Y2ZlN2VhOSFiNDk4MjczfHhzdWFhIWI0OTM5MCJdfQ.SsTB9DyFq7zCYVN3qU0_LcYWkfuBoh2hHYc6Xh0Vheer82Foh0n0nQtBrTy6HX2xyxVPbhqjsxMOsI044bb2F3C6WjZQ5RTMy_SGGt0Xwj3Rp-rr78Cm7LLBs15YZvrAWCkSy3rcnQYoOdWU7iR_f1q-KspsN-qfgw12wyVaHscS5cQ-Bg1LUOp5ar1OyX68H-w9DjawGxWchz6kwkcOBrninAWDdg8MII-jklPY-Q0x2R67xWfqzp4aKfgqOm-ezIfeJ0jiQdAGW80JILX0RU3gYypziX_0LSHZOSEhjkIrbrIynkzm_vnlkWUbHzm1lMsrfhFC2dlcNwcqBmqhZQ'
+            'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktMDA5MzA4ZWU5ZiIsInR5cCI6IkpXVCIsImppZCI6ICJ6a1V4bnNWU2JsbDlIenlXYmp1cm9tTXp4OVh5TWk1d2MxOE12eEJEWDFFPSJ9.eyJqdGkiOiJkOTZiZTc0ZGMyYjk0OGNmOThiZDczODdjZWJkOGEwMiIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI0MzhjMTVkNS01ZTdhLTQwNWUtODIzYS0wZTcwYmRjMjM4MDMiLCJ6ZG4iOiI4M2YzNTdhMHRyaWFsIiwic2VydmljZWluc3RhbmNlaWQiOiJmMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkifSwic3ViIjoic2ItZjIwN2M2OTYtZmE5ZC00NTQxLTk2OTUtOTkwMDRjZmU3ZWE5IWI0OTgyNzN8eHN1YWEhYjQ5MzkwIiwiYXV0aG9yaXRpZXMiOlsidWFhLnJlc291cmNlIl0sInNjb3BlIjpbInVhYS5yZXNvdXJjZSJdLCJjbGllbnRfaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJjaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJhenAiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjMwMDIwZmQwIiwiaWF0IjoxNzU2NDUxNjA1LCJleHAiOjE3NTY0OTQ4MDUsImlzcyI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL29hdXRoL3Rva2VuIiwiemlkIjoiNDM4YzE1ZDUtNWU3YS00MDVlLTgyM2EtMGU3MGJkYzIzODAzIiwiYXVkIjpbInVhYSIsInNiLWYyMDdjNjk2LWZhOWQtNDU0MS05Njk1LTk5MDA0Y2ZlN2VhOSFiNDk4MjczfHhzdWFhIWI0OTM5MCJdfQ.RigTBX4jgvM1i2Sy23jdREY82-bUcglXO5-dvAN-KeiVtgXvcYIovCpiLM-1qJAVTrhkpu4DMBrQL9HQ_b-74Im6EHr0RFaah-yqqY776XSFgn2Qeb80PHQaFRp8-fdVhIeAOItTtyUiGZsN-0GTJxAEII6MIEeLd6AtGm7K-8KMbX7OLSG60h0i_GoFlObgQRHDz6yxoR0ljIm1keRm8l_bp_uzPJ68gt3D3nOipEm8WqPT0L4EH0rvHONx-0Lzvtd47K4BWGQnoG-qDMe9rbOOoLvEK3oy2JfdZbLolVpYJtIrczAwKHcI4NZNWsS32j6ZglvNzjttFSvKOmV2bA'
           }
         }
       );
@@ -52,6 +52,26 @@ module.exports = async function (srv) {
       return `Error updating travel request: ${err.message}`;
     }
   });
+
+  srv.on('read', 'MyEntity', async (req) => {
+    const userId = req.user.id;
+    const firstName = req.req.authInfo.getGivenName();
+    const lastName = req.req.authInfo.getFamilyName();
+    const email = req.req.authInfo.getEmail();
+
+   console.log(userId);
+   console.log(firstName);
+   console.log(lastName);
+   console.log(email);
+
+     // Return this data as entity response
+    return [{
+      ID: userId,
+      name: `${firstName} ${lastName}`,
+      createdAt: new Date()
+    }];
+    
+});
 
 };
 

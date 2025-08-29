@@ -147,6 +147,6 @@
   },
   "sap.cloud": {
     "public": true,
-    "service": "TravelExpenses.service"
+    "service": "TravelExpenses"
   }
 }

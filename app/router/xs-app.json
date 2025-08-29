@@ -1,11 +1,18 @@
 {
+  "welcomeFile": "/index.html",
+  "authenticationMethod": "route",
   "routes": [
     {
-      "source": "^/(.*)$",
+      "source": "^/traveltravelexpenseui/(.*)$",
       "target": "$1",
+      "service": "html5-apps-repo-rt",
+      "authenticationType": "xsuaa"
+    },
+    {
+      "source": "^/odata/v4/travel/(.*)$",
+      "target": "/odata/v4/travel/$1",
       "destination": "srv-api",
       "csrfProtection": true
     }
-  ],
-  "welcomeFile": "/traveltravelexpenseui"
+  ]
 }
