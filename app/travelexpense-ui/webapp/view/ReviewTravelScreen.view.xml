@@ -5,8 +5,8 @@
   xmlns:layout="sap.ui.layout.form" displayBlock="true">
   <Page title="Review Travel Request">
     <content>
-      <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom" width="100%" renderType="Bare">
-        <VBox width="50%">
+      <VBox class="sapUiSmallMargin roundedWhiteBox">
+        <VBox width="80%" >
           <HBox xmlns="sap.m" alignItems="Center" justifyContent="Center" class="stepBar">
 
             <VBox alignItems="Center">
@@ -21,81 +21,92 @@
               <Text text="Review and Send" class="stepTextActive" />
             </VBox>
 
-            <Text text="―" class="stepLine" />
+            <!-- <Text text="―" class="stepLine" />
 
             <VBox alignItems="Center">
               <Text text="3" class="stepCircleDisabled" />
               <Text text="Completed" class="stepTextDisabled" />
-            </VBox>
+            </VBox> -->
 
           </HBox>
         </VBox>
 
         <HBox >
-          <Title text="Employee ID: " level="H2" class="sapUiSmallMarginBottom" />
+          <core:Icon src="sap-icon://account" size="1rem" color="blue"/>
           <Title text="{travelData>/employee}" level="H2" class="sapUiSmallMarginBegin" />
         </HBox>
 
         <HBox width="80%">
 
           <!-- General Data Section -->
-          <VBox width="50%">
+          <VBox width="50%" class="sapUiSmallMargin roundedWhiteBox">
             <VBox>
               <Title text="Genaral Information" level="H2" class="sapUiSmallMarginTop"/>
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Start Date:" />
+              <core:Icon src="sap-icon://calendar" size="1rem" color="black"/>
+                <Label text="Start Date:"  class="sapUiSmallMarginBegin" />
                 <Text id="id_startDate" text="{travelData>/startDate}" class="sapUiSmallMarginBegin" />
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="End Date:"/>
+              <core:Icon src="sap-icon://calendar" size="1rem" color="black"/>
+                <Label text="End Date:"  class="sapUiSmallMarginBegin"/>
                 <Text  id="id_endDate" text="{travelData>/endDate}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Departure:" />
+              <core:Icon src="sap-icon://flight" size="1rem"/>
+                <Label text="Departure:"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_departure" text="{travelData>/departure}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Arrival:" />
+              <core:Icon src="sap-icon://flight" size="1rem"/>
+                <Label text="Arrival:" class="sapUiSmallMarginBegin" />
                 <Text id="id_arrival" text="{travelData>/arrival}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Posting Date:" />
+              <core:Icon src="sap-icon://calendar" size="1rem" color="black"/>
+                <Label text="Posting Date:"  class="sapUiSmallMarginBegin" />
                 <Text id="id_postingDate" text="{travelData>/postingDate}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Self Travel:"/>
+              <core:Icon src="sap-icon://suitcase" size="1rem"/>
+                <Label text="Self Travel:" class="sapUiSmallMarginBegin"/>
                 <Text id="id_selfTravel" text="{travelData>/selfTravel}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Place of Visit:" />
+              <core:Icon src="sap-icon://map" size="1rem"/>
+                <Label text="Place of Visit:" class="sapUiSmallMarginBegin"/>
                 <Text id="id_placeOfVisit" text="{travelData>/placeOfVisit}" class="sapUiSmallMarginBegin"/>
               </HBox >
             </VBox>
           </VBox>
 
           <!-- Additional Information Section -->
-          <VBox width="50%">
+          <VBox width="50%" class="sapUiSmallMargin roundedWhiteBox">
             <VBox>
               <Title text="Additional Information" level="H2" class="sapUiSmallMarginTop"/>
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Travel Type:" />
+              <core:Icon src="sap-icon://travel-itinerary" size="1rem"/>
+                <Label text="Travel Type:"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_travelType" text="{travelData>/travelType}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Purpose of Travel:" />
+              <core:Icon src="sap-icon://target-group" size="1rem"/>
+                <Label text="Purpose of Travel:"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_purposeOfTravel" text="{travelData>/purposeOfTravel}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Estimated Costs:" />
+              <core:Icon src="sap-icon://travel-expense" size="1rem"/>
+                <Label text="Estimated Costs:"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_estimatedCost" text="{travelData>/estimatedCost} INR" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-
-                <Label text="Additional Travellers:" />
+                <core:Icon src="sap-icon://family-care" size="1rem"/>
+                <Label text="Additional Travellers:"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_additionalTravellers" text="{travelData>/additionalTravellers}" class="sapUiSmallMarginBegin"/>
               </HBox >
               <HBox class="sapUiSmallMarginTop">
-                <Label text="Advance (International Trip):" />
+              <core:Icon src="sap-icon://loan" size="1rem"/>
+                <Label text="Advance (International Trip):"  class="sapUiSmallMarginBegin"/>
                 <Text id="id_advance" text="{travelData>/advance} Indian Rupee" class="sapUiSmallMarginBegin"/>
               </HBox >
             </VBox>
@@ -130,8 +141,8 @@
         <Text text="I confirm that I have entered all data to the best of my knowledge" class="sapUiSmallMarginTop" />
 
         <HBox class="sapUiMediumMarginTop">
-          <Button text="Previous Step" press="onPreviousStep" class="sapUiSmallMarginEnd"/>
-          <Button text="Save and Send for Approval" press="onSaveAndApprove" id="saveAndProceed" />
+          <Button text="Previous Step" type="Emphasized" press="onPreviousStep" class="sapUiSmallMarginEnd"/>
+          <Button text="Save and Send for Approval" type="Emphasized" press="onSaveAndApprove" id="saveAndProceed" />
         </HBox>
 
       </VBox>

@@ -23,6 +23,7 @@
   "devDependencies": {
     "@cap-js/cds-types": "^0.13.0",
     "@cap-js/sqlite": "^2",
+    "@sap/cds": "^9.3.0",
     "@sap/cds-dk": "^9.2.0",
     "mbt": "^1.2.29",
     "rimraf": "^5.0.5"
