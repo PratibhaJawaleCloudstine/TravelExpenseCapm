@@ -30,10 +30,15 @@
 
           </HBox>
         </VBox>
-
+   <VBox xmlns="sap.m"
+          xmlns:core="sap.ui.core">
+          <core:HTML content="&lt;hr style='border: 1px solid #ccc; width: 100%; margin: 1rem 0;' /&gt;" />
+        </VBox>
         <HBox >
-          <core:Icon src="sap-icon://account" size="1rem" color="blue"/>
-          <Title text="{travelData>/employee}" level="H2" class="sapUiSmallMarginBegin" />
+          <Title text="{employeeModel>/name}" level="H2" class="sapUiSmallMarginBegin" />
+          <Title text="," level="H2"/>
+          <Text text="Kindly review the entered Travel Request details and take the final action." class="sapUiSmallMarginBegin" />
+
         </HBox>
 
         <HBox width="80%">

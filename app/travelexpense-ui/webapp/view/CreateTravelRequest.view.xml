@@ -16,6 +16,12 @@
           height="auto"/>
 
         <Text text="Welcome to Travel Request App"/>
+        <VBox class="sapUiSmallMargin"  alignItems="Center" >
+            <Text text="{employeeModel>/name}" class=" sapMTextBold"/>
+          
+            <Text text="{employeeModel>/id}"  />
+        </VBox>
+
         <Text class="sapUiLargeMarginTop" text="Users can create a travel request through a form, review the entered details, and either save it as a draft or submit it for approval. Submitted requests can be approved or rejected by the approver."/>
 
       </VBox>
