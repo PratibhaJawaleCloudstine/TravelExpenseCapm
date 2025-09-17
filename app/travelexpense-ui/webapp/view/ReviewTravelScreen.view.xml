@@ -111,8 +111,8 @@
               </HBox >
               <HBox class="sapUiSmallMarginTop">
               <core:Icon src="sap-icon://loan" size="1rem"/>
-                <Label text="Advance (International Trip):"  class="sapUiSmallMarginBegin"/>
-                <Text id="id_advance" text="{travelData>/advance} Indian Rupee" class="sapUiSmallMarginBegin"/>
+                <Label text="Advances:"  class="sapUiSmallMarginBegin"/>
+                <Text id="id_advance" text="{travelData>/advances} INR" class="sapUiSmallMarginBegin"/>
               </HBox >
             </VBox>
 

@@ -57,8 +57,12 @@ sap.ui.define([
         estimatedCosts: oView.byId("estimatedCosts").getValue(),
         additionalTravellers: oView.byId("additionalTravellers").getValue(),
         advances: oView.byId("advances").getValue(),
-        costAssignment: oView.byId("costAssignment").getText()
+        costAssignment: parseInt(oView.byId("costAssignment").getText(), 10) || 0
       };
+
+      console.log("estimatedCosts-- 63");
+      console.log(estimatedCosts);
+
 
       console.log("Review Data:", data);
       MessageToast.show("Review data captured. Check console.");
@@ -143,7 +147,11 @@ sap.ui.define([
       const formattedPostingDate = postingDate.toISOString().split('T')[0];
       const selfTravel = oView.byId("selfTravel").getSelectedKey();
       const placeOfVisit = oView.byId("placeOfVisitComboBox").getValue();
-      var estimatedCosts = oView.byId("estimatedCosts").getValue();
+      var estimatedCosts = parseInt(oView.byId("estimatedCosts").getValue(), 10) || 0;
+
+      console.log("estimatedCosts-- 152");
+      console.log(estimatedCosts);
+
 
       if (!placeOfVisit || placeOfVisit.trim() === "") {
         this.byId("placeOfVisitComboBox").setValueState("Error");
@@ -201,6 +209,8 @@ sap.ui.define([
         costAssignment: costAssignment,
         status: travelStatus
       };
+      console.log("estimatedCosts-- 212");
+      console.log(estimatedCosts);
 
       const oJSONModel = new sap.ui.model.json.JSONModel(travelRequestData);
       this.getOwnerComponent().setModel(oJSONModel, "travelData");
@@ -259,7 +269,10 @@ sap.ui.define([
       const formattedPostingDate = postingDate.toISOString().split('T')[0];
       const selfTravel = oView.byId("selfTravel").getSelectedKey();
       const placeOfVisit = oView.byId("placeOfVisitComboBox").getValue();
-      var estimatedCosts = oView.byId("estimatedCosts").getValue();
+      //var estimatedCosts = oView.byId("estimatedCosts").getValue();
+      var estimatedCosts = parseInt(oView.byId("estimatedCosts").getValue(), 10) || 0;
+      console.log("estimatedCosts-- 264");
+      console.log(estimatedCosts);
 
       if (!placeOfVisit || placeOfVisit.trim() === "") {
         this.byId("placeOfVisitComboBox").setValueState("Error");

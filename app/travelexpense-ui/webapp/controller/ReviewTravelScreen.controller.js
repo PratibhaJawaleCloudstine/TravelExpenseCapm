@@ -111,6 +111,10 @@ sap.ui.define([
       var travelId = crypto.randomUUID();
       var travelStatus = "Approve";
 
+      console.log("estimatedCosts-- 114");
+      console.log(estimatedCosts);
+
+
       if (this.selectedOption === "Approve") {
       //start workflow (Build process)
         const travelData = {

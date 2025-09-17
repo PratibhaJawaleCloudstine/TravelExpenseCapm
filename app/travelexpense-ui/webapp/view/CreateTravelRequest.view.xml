@@ -132,7 +132,8 @@
           <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
             <Label text="Estimated Costs"/>
             <HBox >
-              <Input id="estimatedCosts" type="Number"/>
+              <Input id="estimatedCosts" type="Number"
+    liveChange=".onNumberOnly"/>
               <Label text="INR" class=" sapUiTinyMarginBegin sapUiTinyMarginTop"/>
             </HBox>
           </VBox>
@@ -143,8 +144,9 @@
         </VBox>
 
         <VBox class="sapUiSmallMarginTop">
-          <Label text="Advances (Only for International Trip)" />
-          <Input id="advances" value="0.00 Indian Rupee" />
+          <Label text="Advances" />
+          <Input id="advances" placeholder="0.00 Indian Rupee" type="Number"
+    liveChange=".onNumberOnly" />
         </VBox>
 
         <VBox class="sapUiSmallMarginTop">
