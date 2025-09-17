@@ -92,7 +92,7 @@ modules:
     requires:
       - name: TravelExpenses-auth
       - name: srv-api
-      - name: TravelExpenses-html5-repo-host
+      - name: TravelExpenses-repo-host
         parameters:
           content-target: true
           config:
@@ -101,11 +101,10 @@ modules:
     build-parameters:
       build-result: app/
       requires:
-        - name: TravelExpensestravelexpenseui
+        - name: traveltravelexpenseui
           artifacts:
             - travelexpense-ui.zip
           target-path: app/
-        - name: traveltravelexpenseui
     parameters:
       config:
         HTML5Runtime_enabled: true
@@ -133,12 +132,12 @@ modules:
         parameters:
           service-key:
             name: TravelExpenses-auth-key
-      - name: TravelExpenses-html5-repo-host
+      - name: TravelExpenses-repo-host
         parameters:
           service-key:
             name: TravelExpenses-html5-repo-host-key
       - name: srv-api
-      - name: TravelExpenses-destination
+      - name: TravelExpenses-destination-service
         parameters:
           content-target: true
     build-parameters:
@@ -232,8 +231,7 @@ resources:
     requires:
       - name: TravelExpenses-auth
       - name: srv-api # must be used in xs-app.json as well
-        url: ~{srv-url}
-        forwardAuthToken: true
+    
 
 parameters:
   deploy_mode: html5-repo

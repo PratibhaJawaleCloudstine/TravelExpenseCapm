@@ -12,6 +12,18 @@ sap.ui.define([
       oCityModel.loadData("model/cities.json");
       this.getView().setModel(oCityModel, "cities");
 
+
+      const oData = {
+        name: "Pratibha Jawale",
+        id: "EMP001"
+      };
+
+      // Create JSON Model
+      const oModel = new sap.ui.model.json.JSONModel(oData);
+
+      // Set model with name 'employeeModel'
+      this.getOwnerComponent().setModel(oModel, "employeeModel");
+
       this.getView().setModel(this.getOwnerComponent().getModel());
 
       this.getOwnerComponent()
@@ -52,9 +64,7 @@ sap.ui.define([
       MessageToast.show("Review data captured. Check console.");
     },
 
-    onSaveDraft: function () {
-      MessageToast.show("Draft saved successfully.");
-    },
+ 
 
     onChangePlace: function (oEvent) {
       const sValue = oEvent.getParameter("value");

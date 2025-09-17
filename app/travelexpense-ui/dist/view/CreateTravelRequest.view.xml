@@ -5,7 +5,27 @@
 
   <Page title="Create Travel Request">
     <content>
-      <VBox class="sapUiSmallMargin" width="50%">
+    <HBox  width="100%">
+      <VBox width="25%"  class="roundedWhiteBox sapUiSmallMargin" alignItems="Center" >
+
+        <Image
+          src="img/Logo.png"
+          alt="Company Logo"
+          decorative="false"
+          width="180px"
+          height="auto"/>
+
+        <Text text="Welcome to Travel Request App"/>
+        <VBox class="sapUiSmallMargin"  alignItems="Center" >
+            <Text text="{employeeModel>/name}" class=" sapMTextBold"/>
+          
+            <Text text="{employeeModel>/id}"  />
+        </VBox>
+
+        <Text class="sapUiLargeMarginTop" text="Users can create a travel request through a form, review the entered details, and either save it as a draft or submit it for approval. Submitted requests can be approved or rejected by the approver."/>
+
+      </VBox>
+      <VBox width="75%"  class="roundedWhiteBox sapUiSmallMargin">
 
         <HBox xmlns="sap.m" alignItems="Center" justifyContent="Center" class="stepBar">
 
@@ -21,12 +41,12 @@
             <Text text="Review and Send" class="stepTextCurrent" />
           </VBox>
 
-          <Text text="―" class="stepLine" />
+          <!-- <Text text="―" class="stepLine" />
 
           <VBox alignItems="Center">
             <Text text="3" class="stepCircleDisabled" />
             <Text text="Completed" class="stepTextDisabled" />
-          </VBox>
+          </VBox> -->
 
         </HBox>
 
@@ -136,11 +156,12 @@
         <Text text="No travel services requested" />
 
         <HBox justifyContent="End" class="sapUiSmallMarginTop">
-          <Button text="Review" press="onReviewTravelRequest" class="sapUiSmallMarginEnd"/>
-          <Button text="Save Draft" press="onSaveDraft"/>
+          <Button text="Review" type="Emphasized" press="onReviewTravelRequest" class="sapUiSmallMarginEnd"/>
+          <Button text="Save Draft" type="Emphasized" press="onSaveDraft"/>
         </HBox>
 
       </VBox>
+    </HBox>
     </content>
   </Page>
 </mvc:View>
