@@ -22,7 +22,7 @@
     line-height: 2rem;
     text-align: center;
     border-radius: 50%;
-    border: 1px dashed rgb(84, 79, 79);
+    border: 2px dashed #0a6ed1;
     color: #0a6ed1;
     padding-left: 7px;
   }
@@ -34,7 +34,7 @@
     text-align: center;
     border-radius: 50%;
     background-color: transparent;
-    color: rgb(141, 130, 130);
+    color: #0a6ed1;
     padding-left: 7px;
   }
   
@@ -78,3 +78,25 @@
     color: gray;
     font-size: 0.875rem;
 }
+
+/* Make tab header scrollable */
+.sapMITBHeader {
+    overflow-x: auto !important;   /* horizontal scroll */
+    display: flex !important;
+    flex-wrap: nowrap !important;  /* prevent wrapping */
+}
+
+/* Allow each tab text to expand */
+.sapMITBItem {
+    flex: 0 0 auto !important; /* prevent shrinking */
+    white-space: nowrap !important;
+    min-width: 70px !important;
+}
+
+/* Tab text itself */
+.sapMITBText {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+}
+

@@ -62,7 +62,7 @@ modules:
         parameters:
           content-target: true
     parameters:
-      sap.cloud.service: TravelExpenses
+      sap.cloud.service: TravelExpenses.service
     build-parameters:
       build-result: resources
       requires:
@@ -74,7 +74,7 @@ modules:
     type: html5
     path: app/travelexpense-ui
     parameters:
-      sap.cloud.service: TravelExpenses
+      sap.cloud.service: TravelExpenses.service
     build-parameters:
       build-result: dist
       builder: custom
@@ -221,7 +221,7 @@ resources:
                 Type: HTTP
                 URL: https://html5-apps-repo-rt.cfapps.us10.hana.ondemand.com
                 HTML5.RuntimeEnabled: true
-                sap.cloud.service: TravelExpenses
+                sap.cloud.service: TravelExpenses.service
             existing_destinations_policy: update
         version: 1.0.0
         HTML5Runtime_enabled: true

@@ -1,9 +1,9 @@
 /* Enter your custom styles here */
 .stepBar {
     margin: 1rem;
-  }
+}
   
-  .stepCircleActive {
+.stepCircleActive {
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
@@ -14,54 +14,59 @@
     border: 2px solid #0a6ed1;
     font-weight: bold;
     padding-left: 7px;
-  }
+}
   
-  .stepCircleCurrent {
+.stepCircleCurrent {
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
     text-align: center;
     border-radius: 50%;
-    border: 1px dashed rgb(84, 79, 79);
+    background-color: white;
     color: #0a6ed1;
+    border: 2px dashed #0a6ed1;
+    font-weight: bold;
     padding-left: 7px;
-  }
+}
   
-  .stepCircleDisabled {
+.stepCircleDisabled {
     width: 2rem;
     height: 2rem;
     line-height: 2rem;
     text-align: center;
     border-radius: 50%;
-    background-color: transparent;
+    background-color: white;
     color: rgb(141, 130, 130);
+    border: 1px dashed rgb(141, 130, 130);
+    font-weight: bold;
     padding-left: 7px;
-  }
+}
   
-  .stepTextActive {
+.stepTextActive {
     color: #0a6ed1;
     font-weight: bold;
     margin-top: 0.2rem;
-  }
+}
   
-  .stepTextCurrent {
-    color: rgb(84, 79, 79);
+.stepTextCurrent {
+    color: #0a6ed1;
+    font-weight: bold;
     margin-top: 0.2rem;
-  }
+}
   
-  .stepTextDisabled {
+.stepTextDisabled {
     color: rgb(141, 130, 130);
     margin-top: 0.2rem;
-  }
+}
   
-  .stepLine {
+.stepLine {
     padding: 0 1rem;
     color: rgb(141, 130, 130);
     font-weight: bold;
-  }
+}
   
 
-  .roundedWhiteBox {
+.roundedWhiteBox {
     background-color: white !important; /* white background */
     border-radius: 12px; /* curved corners */
     padding: 2rem; /* inner spacing */
@@ -77,4 +82,111 @@
 .sapMTextGray {
     color: gray;
     font-size: 0.875rem;
+}
+
+/* Make tab header scrollable */
+.sapMITBHeader {
+    overflow-x: auto !important;   /* horizontal scroll */
+    display: flex !important;
+    flex-wrap: nowrap !important;  /* prevent wrapping */
+}
+
+/* Allow each tab text to expand */
+.sapMITBItem {
+    flex: 0 0 auto !important; /* prevent shrinking */
+    white-space: nowrap !important;
+    min-width: 70px !important;
+}
+
+/* Tab text itself */
+.sapMITBText {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: clip !important;
+}
+
+
+/* ---------------------------
+   Tab header background (scoped)
+   --------------------------- */
+.tabHeaderColor .sapMTabStrip,
+.tabHeaderColor .sapMITBHeader,
+.tabHeaderColorInner { /* tabHeaderColorInner will be added to the real header by JS */
+    background-color: #52a4f6 !important;
+    background-image: none !important;
+}
+
+/* Text + icon defaults (scoped ONLY to headers) */
+.tabHeaderColor .sapMTabStripItem,
+.tabHeaderColor .sapMTabStripItemIcon,
+.tabHeaderColor .sapMITBItem,
+.tabHeaderColor .sapMITBText,
+.tabHeaderColor .sapMITBIcon,
+.tabHeaderColor .sapMTabStrip .sapUiIcon,
+.tabHeaderColor .sapMITBHeader .sapUiIcon {
+    color: #fff !important;   /* font-based icons & text */
+    fill: #fff !important;    /* SVG icons */
+}
+
+/* SVG path fallback targeting actual SVG elements */
+.tabHeaderColor .sapMTabStrip svg,
+.tabHeaderColor .sapMITBHeader svg,
+.tabHeaderColor .sapMTabStrip svg path,
+.tabHeaderColor .sapMITBHeader svg path,
+.tabHeaderColor .sapMTabStrip svg g,
+.tabHeaderColor .sapMITBHeader svg g {
+    color: #fff !important;
+    fill: #fff !important;
+}
+
+/* Selected / active tab (scoped) */
+.tabHeaderColor .sapMTabStripItemSelected,
+.tabHeaderColor .sapMITBSelected {
+    background-color: #fff !important;
+    color: #52a4f6 !important;
+}
+
+/* Selected icon colour */
+.tabHeaderColor .sapMTabStripItemSelected .sapUiIcon,
+.tabHeaderColor .sapMTabStripItemSelected svg,
+.tabHeaderColor .sapMITBSelected .sapUiIcon,
+.tabHeaderColor .sapMITBSelected svg {
+    color: #52a4f6 !important;
+    fill: #52a4f6 !important;
+}
+
+/* ---------------------------
+   Hover effect
+   --------------------------- */
+.tabHeaderColor .sapMTabStripItem:hover,
+.tabHeaderColor .sapMITBItem:hover {
+    background-color: #0f64be !important; /* slightly darker blue */
+    transition: background-color 0.2s ease;
+}
+
+.tabHeaderColor .sapMTabStripItem:hover .sapUiIcon,
+.tabHeaderColor .sapMTabStripItem:hover .sapMITBText,
+.tabHeaderColor .sapMITBItem:hover .sapUiIcon,
+.tabHeaderColor .sapMITBItem:hover .sapMITBText {
+    color: #fff !important;  /* keep icons & text white on hover */
+    fill: #fff !important;
+}
+
+/* Hover effect for active tab */
+.tabHeaderColor .sapMTabStripItemSelected:hover,
+.tabHeaderColor .sapMITBSelected:hover {
+    background-color: #e6f0fc !important; /* light blue shade on hover */
+}
+
+/* Reset icons inside ComboBox / other content so they stay black */
+.sapMComboBox .sapUiIcon,
+.sapMComboBoxBase .sapUiIcon {
+    color: #000 !important;
+    fill: #000 !important;
+}
+
+/* Utility class to force black icons where needed */
+.blackIconBtn .sapUiIcon {
+    color: #000 !important;
+    fill: #000 !important;
 }
