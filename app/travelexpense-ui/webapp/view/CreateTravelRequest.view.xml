@@ -382,7 +382,7 @@
                                     width="95%"
                                 >
                                     <Title
-                                        text="All Your Travel Requests:"
+                                        text="This list shows all the travel requests you have created, along with their current status:"
                                         level="H2"
                                         class="sapUiSmallMarginBottom sapUiSmallMarginTop"
                                     />
@@ -496,7 +496,7 @@
                                     width="95%"
                                 >
                                     <Title
-                                        text="Your Draft Travel Requests:"
+                                        text="This list shows travel requests you have saved as drafts but not yet submitted for approval:"
                                         level="H2"
                                         class="sapUiSmallMarginBottom sapUiSmallMarginTop"
                                     />
@@ -595,7 +595,7 @@
                                     width="95%"
                                 >
                                     <Title
-                                        text="Your Approved Travel Requests:"
+                                        text="This list displays the travel requests that have been reviewed and approved:"
                                         level="H2"
                                         class="sapUiSmallMarginBottom sapUiSmallMarginTop"
                                     />
@@ -694,7 +694,7 @@
                                     width="95%"
                                 >
                                     <Title
-                                        text="Your Rejected Travel Requests:"
+                                        text="This list contains travel requests that have been reviewed and rejected:"
                                         level="H2"
                                         class="sapUiSmallMarginBottom sapUiSmallMarginTop"
                                     />
@@ -765,7 +765,7 @@
 
                     <!-- Tab 6 -->
                     <TabContainerItem
-                        name="Not Reviewed"
+                        name="Awaiting Approval"
                         key="tab5"
                         icon="sap-icon://pending"
                     >
@@ -793,7 +793,7 @@
                                     width="95%"
                                 >
                                     <Title
-                                        text="Your Non reviewed Travel Requests:"
+                                        text="This list displays travel requests you have submitted and are pending approval:"
                                         level="H2"
                                         class="sapUiSmallMarginBottom sapUiSmallMarginTop"
                                     />

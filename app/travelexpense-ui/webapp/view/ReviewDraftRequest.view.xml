@@ -1,0 +1,169 @@
+<mvc:View
+    controllerName="travel.travelexpenseui.controller.ReviewDraftRequest"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m"
+    xmlns:core="sap.ui.core"
+    displayBlock="true">
+
+    <Page title="Create Travel Request">
+        <content>
+            <HBox width="100%">
+                <!-- Left Panel -->
+                <VBox width="25%" class="roundedWhiteBox sapUiSmallMargin" alignItems="Center">
+                    <Image src="img/Logo.png" alt="Company Logo" decorative="false" width="180px" height="auto"/>
+                    <Text text="Welcome to Travel Request App"/>
+                    <VBox class="sapUiSmallMargin" alignItems="Center">
+                        <Text text="{employeeModel>/name}" class="sapMTextBold"/>
+                        <Text text="{employeeModel>/id}"/>
+                    </VBox>
+                    <Text class="sapUiLargeMarginTop"
+                          text="Users can create a travel request through a form, review the entered details, and either save it as a draft or submit it for approval. Submitted requests can be approved or rejected by the approver."/>
+                </VBox>
+
+                <!-- Right Panel -->
+                <VBox width="75%" class="roundedWhiteBox sapUiSmallMargin">
+                    <!-- Step Bar -->
+                    <HBox xmlns="sap.m" alignItems="Center" justifyContent="Center" class="stepBar">
+                        <VBox alignItems="Center">
+                            <Text text="1" class="stepCircleCurrent"/>
+                            <Text text="General Data" class="stepTextCurrent"/>
+                        </VBox>
+                        <Text text="―" class="stepLine"/>
+                        <VBox alignItems="Center">
+                            <Text text="2" class="stepCircleDisabled"/>
+                            <Text text="Review and Send" class="stepTextDisabled"/>
+                        </VBox>
+                        <Text text="―" class="stepLine"/>
+                        <VBox alignItems="Center">
+                            <Text text="3" class="stepCircleDisabled"/>
+                            <Text text="Completed" class="stepTextDisabled"/>
+                        </VBox>
+                    </HBox>
+
+                    <Title text="General Data" level="H2"/>
+
+                    <!-- Dates -->
+                    <HBox class="sapUiSmallMarginTop" width="100%">
+                        <VBox class="sapUiSmallMarginEnd" width="50%">
+                            <Label text="Start Date" required="true"/>
+                            <DatePicker
+            id="rev_startDate"
+            value="{travelData>/startDate}"
+            change="onDateChange"
+        />
+                        </VBox>
+                        <VBox width="50%">
+                            <Label text="End Date" required="true"/>
+                            <DatePicker
+            id="rev_endDate"
+            value="{travelData>/endDate}"
+            change="onDateChange"
+        />
+                        </VBox>
+                    </HBox>
+
+                    <!-- Departure / Arrival -->
+                    <HBox class="sapUiSmallMarginTop" width="100%">
+                        <VBox class="sapUiSmallMarginEnd" width="50%">
+                            <Label text="Departure" required="true"/>
+                            <ComboBox id="rev_departure" width="100%" selectedKey="{travelData>/departure}">
+                                <items>
+                                    <core:Item key="Departure from First Workplace" text="Departure from First Workplace"/>
+                                    <core:Item key="Departure from Home" text="Departure from Home"/>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+                        <VBox width="50%">
+                            <Label text="Arrival" required="true"/>
+                            <ComboBox id="rev_arrival" width="100%" selectedKey="{travelData>/arrival}">
+                                <items>
+                                    <core:Item key="Arrival at First Workplace" text="Arrival at First Workplace"/>
+                                    <core:Item key="Arrival at Home" text="Arrival at Home"/>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+                    </HBox>
+
+                    <!-- Posting Date / Self Travel / Place of Visit -->
+                    <HBox>
+                        <VBox class="sapUiSmallMarginTop">
+                            <Label text="Posting Date" required="true"/>
+                            <DatePicker id="rev_postingDate" value="{travelData>/postingDate}"/>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+                            <Label text="Self Travel" required="true"/>
+                            <ComboBox id="rev_selfTravel" selectedKey="{travelData>/selfTravel}">
+                                <items>
+                                    <core:Item key="Yes" text="Yes"/>
+                                    <core:Item key="No" text="No"/>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+                            <Label text="Place of Visit" required="true"/>
+                           <ComboBox id="rev_placeOfVisitComboBox"
+          selectedKey="{travelData>/placeOfVisit}"
+          items="{ path: 'cities>/', templateShareable: false }"
+          placeholder="Select or enter a city"
+          change="onChangePlace"
+          width="100%">
+    <core:Item key="{cities>cityId}" text="{cities>cityName}" />
+</ComboBox>
+
+                        </VBox>
+                    </HBox>
+
+                    <!-- Additional Information -->
+                    <Title text="Additional Information" level="H2" class="sapUiMediumMarginTop"/>
+                    <HBox>
+                        <VBox class="sapUiSmallMarginTop">
+                            <Label text="Travel Type" required="true"/>
+                            <ComboBox id="rev_travelType" selectedKey="{travelData>/travelType}">
+                                <items>
+                                    <core:Item key="Business Travel - Domestic" text="Business Travel - Domestic"/>
+                                    <core:Item key="Business Travel - International" text="Business Travel - International"/>
+                                </items>
+                            </ComboBox>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+                            <Label text="Purpose of Travel"/>
+                            <Input id="rev_purposeOfTravel" value="{travelData>/purposeOfTravel}"/>
+                        </VBox>
+                        <VBox class="sapUiSmallMarginTop sapUiMediumMarginBegin">
+                            <Label text="Estimated Costs"/>
+                            <HBox>
+                                <Input id="rev_estimatedCosts" type="Number" liveChange=".onNumberOnly" value="{travelData>/estimatedCost}"/>
+                                <Label text="INR" class="sapUiTinyMarginBegin sapUiTinyMarginTop"/>
+                            </HBox>
+                        </VBox>
+                    </HBox>
+
+                    <VBox class="sapUiSmallMarginTop">
+                        <Label text="Additional Travellers (non-employees)"/>
+                        <Input id="rev_additionalTravellers" value="{travelData>/additionalTravellers}" placeholder="Name/Age/Sex"/>
+                    </VBox>
+
+                    <VBox class="sapUiSmallMarginTop">
+                        <Label text="Advances"/>
+                        <Input id="rev_advances" value="{travelData>/advances}" placeholder="0.00 Indian Rupee" type="Number" liveChange=".onNumberOnly"/>
+                    </VBox>
+
+                    <VBox class="sapUiSmallMarginTop">
+                        <Label text="Cost Assignment"/>
+                        <Text id="rev_costAssignment" text="{travelData>/costAssignment}"/>
+                    </VBox>
+
+                    <!-- Travel Services -->
+                    <Title text="Travel Services" level="H2" class="sapUiSmallMarginTop"/>
+                    <Text text="No travel services requested"/>
+
+                    <!-- Buttons -->
+                    <HBox justifyContent="End" class="sapUiSmallMarginTop">
+                        <Button text="Review" type="Emphasized" press="onReviewTravelRequest" class="sapUiSmallMarginEnd"/>
+                        <Button text="Save Draft" type="Emphasized" press="onSaveDraft"/>
+                    </HBox>
+                </VBox>
+            </HBox>
+        </content>
+    </Page>
+</mvc:View>

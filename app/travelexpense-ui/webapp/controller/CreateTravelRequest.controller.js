@@ -10,7 +10,7 @@ sap.ui.define([
       // Initialization logic if needed
       const oCityModel = new sap.ui.model.json.JSONModel();
       oCityModel.loadData("model/cities.json");
-      this.getView().setModel(oCityModel, "cities");
+      this.getOwnerComponent().setModel(oCityModel, "cities");
 
 
       const oData = {
@@ -101,7 +101,7 @@ sap.ui.define([
       const oRowData = oContextDraftData.getObject();
       var travelIdL = oRowData.ID;
 
-      this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+      this.getOwnerComponent().getRouter().navTo("ReviewDraftRequest", {
         travelId: travelIdL
       });
 
@@ -146,9 +146,19 @@ sap.ui.define([
       const oRowData = oContextAlltravelData.getObject();
       var travelIdL = oRowData.ID;
 
-      this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
-        travelId: travelIdL
-      });
+      if (oRowData.Approvedstatus === undefined ||  oRowData.Approvedstatus === null || oRowData.Approvedstatus === "") {
+        this.getOwnerComponent().getRouter().navTo("ReviewDraftRequest", {
+          travelId: travelIdL
+        });
+      } else {
+        this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+          travelId: travelIdL
+        });
+      }
+
+
+
+
 
     },
 
@@ -157,11 +167,11 @@ sap.ui.define([
       if (!sValue) {
         return "Draft";   // show default text
       }
-        const lower = sValue.toLowerCase();
+      const lower = sValue.toLowerCase();
 
-    if (lower === "awaiting approval") {
+      if (lower === "awaiting approval") {
         return "Awaiting Approval";
-    }
+      }
 
 
       return lower.charAt(0).toUpperCase() + lower.slice(1);
@@ -179,7 +189,7 @@ sap.ui.define([
         return "Error";   // Red
       } else if (sValue === "awaiting approval") {
         return "Information"; // Blue
-    }
+      }
       return "None"; // fallback
     },
 
