@@ -1,13 +1,40 @@
 
 
 const axios = require('axios');
+const xsenv = require('@sap/xsenv');
+
 
 module.exports = async function (srv) {
   const { TravelRequests } = srv.entities;
 
+    // Helper function to fetch token from XSUAA
+  async function getXsuaaToken() {
+    const services = xsenv.getServices({ uaa: { tag: 'xsuaa' } });
+    const credentials = services.uaa;
+
+    const response = await axios({
+      url: `${credentials.url}/oauth/token`,
+      method: 'POST',
+      auth: {
+        username: credentials.clientid,
+        password: credentials.clientsecret
+      },
+      params: {
+        grant_type: 'client_credentials'
+      }
+    });
+
+    return response.data.access_token;
+  }
+
   srv.on('startTravelWorkflow', async (req) => {
     try {
       const payload = JSON.parse(req.data.travelData);
+
+      
+      // 🔹 Fetch fresh JWT from XSUAA
+      const token = await getXsuaaToken();
+      console.log("token : "+token);
 
       const response = await axios.post(
         'https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com/workflow/rest/v1/workflow-instances',
@@ -18,7 +45,7 @@ module.exports = async function (srv) {
         {
           headers: {
             'Content-Type': 'application/json',
-            'Authorization': 'Bearer eyJhbGciOiJSUzI1NiIsImprdSI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL3Rva2VuX2tleXMiLCJraWQiOiJkZWZhdWx0LWp3dC1rZXktMDA5MzA4ZWU5ZiIsInR5cCI6IkpXVCIsImppZCI6ICJ3MjkvNzNKNE1zcVBhanZaUDNEaDFsY0I2N011M1NFaTYxZXl3MjdMYm1ZPSJ9.eyJqdGkiOiI5NmJhOWU0NTNkZTM0MTBmOTdiMmQ4MWJmYTM4OTY0YSIsImV4dF9hdHRyIjp7ImVuaGFuY2VyIjoiWFNVQUEiLCJzdWJhY2NvdW50aWQiOiI0MzhjMTVkNS01ZTdhLTQwNWUtODIzYS0wZTcwYmRjMjM4MDMiLCJ6ZG4iOiI4M2YzNTdhMHRyaWFsIiwic2VydmljZWluc3RhbmNlaWQiOiJmMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkifSwic3ViIjoic2ItZjIwN2M2OTYtZmE5ZC00NTQxLTk2OTUtOTkwMDRjZmU3ZWE5IWI0OTgyNzN8eHN1YWEhYjQ5MzkwIiwiYXV0aG9yaXRpZXMiOlsidWFhLnJlc291cmNlIl0sInNjb3BlIjpbInVhYS5yZXNvdXJjZSJdLCJjbGllbnRfaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJjaWQiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJhenAiOiJzYi1mMjA3YzY5Ni1mYTlkLTQ1NDEtOTY5NS05OTAwNGNmZTdlYTkhYjQ5ODI3M3x4c3VhYSFiNDkzOTAiLCJncmFudF90eXBlIjoiY2xpZW50X2NyZWRlbnRpYWxzIiwicmV2X3NpZyI6IjMwMDIwZmQwIiwiaWF0IjoxNzU4NjIxMzYyLCJleHAiOjE3NTg2NjQ1NjIsImlzcyI6Imh0dHBzOi8vODNmMzU3YTB0cmlhbC5hdXRoZW50aWNhdGlvbi51czEwLmhhbmEub25kZW1hbmQuY29tL29hdXRoL3Rva2VuIiwiemlkIjoiNDM4YzE1ZDUtNWU3YS00MDVlLTgyM2EtMGU3MGJkYzIzODAzIiwiYXVkIjpbInVhYSIsInNiLWYyMDdjNjk2LWZhOWQtNDU0MS05Njk1LTk5MDA0Y2ZlN2VhOSFiNDk4MjczfHhzdWFhIWI0OTM5MCJdfQ.Wsq2R5VwHKRdqNXERPV8belxqIArmhOQfo0dRJNjAh8wSCEPuIX1Vd0KzAdEukaLTkiISucaiWmhQXSS79RY6dipBHIReHho97DctFQpLGO7qI90v8-pdA-ebSpFFCVxwGbMU3kGO1Eq6jVGD1MFDYfWK6q1Zgb4Kf7ybNjLBAfu6DKKkxI52om-Bj9fMYMd4d3bvr7It8nxcqLJ-O4sb8hoFO1gpyFg95ZiCuTaUwYZhUHLLYqoDxqxd_VvtCtqTVFPqpElhqQHiroyVUdOJNBW1DAO3GaDnOWPKu59xKpoLOXT-cjg6Q3W5N4bwt1nTsjtU8X45ugWFlytrou2rQ'
+            Authorization: `Bearer ${token}`
           }
         }
       );

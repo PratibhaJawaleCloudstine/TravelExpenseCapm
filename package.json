@@ -10,9 +10,12 @@
     "@sap-cloud-sdk/connectivity": "^4.1.0",
     "@sap-cloud-sdk/http-client": "^4.1.0",
     "@sap/cds-common-content": "^3.0.1",
+    "@sap/xsenv": "^6.0.0",
     "@sap/xssec": "^4",
+    "axios": "^1.12.2",
     "express": "^4",
-    "form-data": "4.0.4"
+    "form-data": "4.0.4",
+    "qs": "^6.14.0"
   },
   "engines": {
     "node": ">=20"
@@ -35,22 +38,27 @@
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
-  "cds": {
-    "requires": {
-      "destination": {
-        "kind": "destination",
-        "vcap": {
-          "label": "destination",
-          "plan": "lite"
-        }
-      },
-      "[production]": {
-        "auth": "xsuaa",
-        "db": "hana"
-      },
-      "destinations": true,
-      "html5-runtime": true,
-      "workzone": true
-    }
+ "cds": {
+  "requires": {
+    "uaa": {
+      "kind": "xsuaa",
+      "name": "TravelExpenses-auth"
+    },
+    "destination": {
+      "kind": "destination",
+      "vcap": {
+        "label": "destination",
+        "plan": "lite"
+      }
+    },
+    "[production]": {
+      "auth": "xsuaa",
+      "db": "hana"
+    },
+    "destinations": true,
+    "html5-runtime": true,
+    "workzone": true
   }
+}
+
 }

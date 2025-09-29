@@ -2,6 +2,7 @@ _schema-version: 3.3.0
 ID: TravelExpenses
 description: A simple CAP project.
 version: 1.0.0
+
 modules:
   - name: TravelExpenses-srv
     type: nodejs
@@ -19,6 +20,7 @@ modules:
       instances: 1
     build-parameters:
       builder: npm-ci
+
   - name: TravelExpenses-db-deployer
     type: hdb
     path: db
@@ -26,6 +28,7 @@ modules:
       - name: TravelExpenses-db
     parameters:
       buildpack: nodejs_buildpack
+
   - name: TravelExpenses
     type: approuter.nodejs
     path: app/router
@@ -58,7 +61,7 @@ modules:
     type: com.sap.application.content
     path: .
     requires:
-      - name: TravelExpenses-repo-host
+      - name: TravelExpenses-repo-host   # ✅ corrected
         parameters:
           content-target: true
     parameters:
@@ -70,6 +73,7 @@ modules:
             - traveltravelexpenseui.zip
           name: traveltravelexpenseui
           target-path: resources/
+
   - name: traveltravelexpenseui
     type: html5
     path: app/travelexpense-ui
@@ -83,8 +87,7 @@ modules:
         - npm run build:cf
         - npm ci
         - npm run build
-      supported-platforms:
-        []
+      supported-platforms: []
 
   - name: TravelExpenses-app-deployer
     type: com.sap.application.content
@@ -92,18 +95,17 @@ modules:
     requires:
       - name: TravelExpenses-auth
       - name: srv-api
-      - name: TravelExpenses-repo-host
+      - name: TravelExpenses-repo-host   # ✅ corrected
         parameters:
           content-target: true
           config:
             HTML5Runtime_enabled: true
-      - name: TravelExpenses-repo-host
     build-parameters:
       build-result: app/
       requires:
         - name: traveltravelexpenseui
           artifacts:
-            - travelexpense-ui.zip
+            - traveltravelexpenseui.zip
           target-path: app/
     parameters:
       config:
@@ -132,10 +134,10 @@ modules:
         parameters:
           service-key:
             name: TravelExpenses-auth-key
-      - name: TravelExpenses-repo-host
+      - name: TravelExpenses-repo-host   # ✅ corrected
         parameters:
           service-key:
-            name: TravelExpenses-html5-repo-host-key
+            name: TravelExpenses-repo-host-key   # ✅ corrected
       - name: srv-api
       - name: TravelExpenses-destination-service
         parameters:
@@ -148,14 +150,15 @@ modules:
           existing_destinations_policy: update
           destinations:
             - Name: TravelExpenses-html5-repository
-              ServiceInstanceName: TravelExpenses-html5-repo-host
-              ServiceKeyName: TravelExpenses-html5-repo-host-key
+              ServiceInstanceName: TravelExpenses-repo-host   # ✅ corrected
+              ServiceKeyName: TravelExpenses-repo-host-key    # ✅ corrected
               sap.cloud.service: TravelExpenses.service
             - Name: TravelExpenses-auth
               Authentication: OAuth2UserTokenExchange
               ServiceInstanceName: TravelExpenses-auth
               ServiceKeyName: TravelExpenses-auth-key
               sap.cloud.service: TravelExpenses.service
+
 resources:
   - name: TravelExpenses-auth
     type: org.cloudfoundry.managed-service
@@ -171,30 +174,32 @@ resources:
       service-plan: application
     requires:
       - name: app-api
+
   - name: TravelExpenses-db
     type: com.sap.xs.hdi-container
     parameters:
       service: hana
       service-plan: hdi-shared
+
   - name: TravelExpenses-repo-host
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
-      service-name: TravelExpenses-html5-service
+      service-name: TravelExpenses-repo-host    # ✅ must match your instance
       service-plan: app-host
+
   - name: TravelExpenses-repo-runtime
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
       service-plan: app-runtime
       config:
-        sap.cloud.service: TravelExpenses # link runtime to service
+        sap.cloud.service: TravelExpenses
 
   - name: TravelExpenses-destination-service
     type: org.cloudfoundry.managed-service
     parameters:
       config:
-
         init_data:
           instance:
             destinations:
@@ -230,12 +235,12 @@ resources:
       service-plan: lite
     requires:
       - name: TravelExpenses-auth
-      - name: srv-api # must be used in xs-app.json as well
-    
+      - name: srv-api
 
 parameters:
   deploy_mode: html5-repo
   enable-parallel-deployments: true
+
 build-parameters:
   before-all:
     - builder: custom

@@ -279,7 +279,7 @@
                                 />
                                 <Text
                                     id="id_additionalTravellers"
-                                    text="{travelData>/additionalTravellers}"
+                                    text="{= ${travelData>/additionalTravellers} ? ${travelData>/additionalTravellers} : '-'}"
                                     class="sapUiSmallMarginBegin"
                                 />
                             </HBox>
@@ -294,7 +294,7 @@
                                 />
                                 <Text
                                     id="id_advance"
-                                    text="{travelData>/advances} INR"
+                                    text="{= ${travelData>/advances} ? ${travelData>/advances} + ' INR' : '0.00 INR'}"
                                     class="sapUiSmallMarginBegin"
                                 />
                             </HBox>

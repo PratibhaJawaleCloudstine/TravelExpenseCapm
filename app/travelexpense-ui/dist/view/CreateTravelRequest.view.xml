@@ -7,368 +7,862 @@
 >
     <Page title="Create Travel Request">
         <content>
-
-      <TabContainer >
-            <items>
-                <TabContainerItem 
-                    name="Create Travel Request"
-                    key="tab1"
-                    icon="sap-icon://add">
-                    <content>
-                    <HBox width="100%">
-                    
-                <VBox
-                    width="25%"
-                    class="roundedWhiteBox sapUiSmallMargin"
-                    alignItems="Center"
-                >
-                    <Image
-                        src="img/Logo.png"
-                        alt="Company Logo"
-                        decorative="false"
-                        width="180px"
-                        height="auto"
-                    />
-
-                    <Text text="Welcome to Travel Request App" />
-                    <VBox
-                        class="sapUiSmallMargin"
-                        alignItems="Center"
+            <TabContainer class="tabHeaderColor">
+                <items>
+                    <TabContainerItem
+                        name="Create Travel Request"
+                        key="tab1"
+                        icon="sap-icon://create-form"
                     >
-                        <Text
-                            text="{employeeModel>/name}"
-                            class=" sapMTextBold"
-                        />
-
-                        <Text text="{employeeModel>/id}" />
-                    </VBox>
-
-                    <Text
-                        class="sapUiLargeMarginTop"
-                        text="Users can create a travel request through a form, review the entered details, and either save it as a draft or submit it for approval. Submitted requests can be approved or rejected by the approver."
-                    />
-                </VBox>
-                <VBox
-                    width="75%"
-                    class="roundedWhiteBox sapUiSmallMargin"
-                >
-                    <HBox
-                        xmlns="sap.m"
-                        alignItems="Center"
-                        justifyContent="Center"
-                        class="stepBar"
-                    >
-                        <VBox alignItems="Center">
-                            <Text
-                                text="1"
-                                class="stepCircleActive"
-                            />
-                            <Text
-                                text="General Data"
-                                class="stepTextActive"
-                            />
-                        </VBox>
-
-                        <Text
-                            text="―"
-                            class="stepLine"
-                        />
-
-                        <VBox alignItems="Center">
-                            <Text
-                                text="2"
-                                class="stepCircleCurrent"
-                            />
-                            <Text
-                                text="Review and Send"
-                                class="stepTextCurrent"
-                            />
-                        </VBox>
-                    </HBox>
-
-                    <Title
-                        text="General Data"
-                        level="H2"
-                    />
-                    <HBox
-                        class="sapUiSmallMarginTop"
-                        width="100%"
-                    >
-                        <VBox
-                            class="sapUiSmallMarginEnd"
-                            width="50%"
-                        >
-                            <Label
-                                text="Start Date"
-                                required="true"
-                            />
-                            <DateTimePicker
-                                id="startDate"
-                                change="onDateChange"
-                            />
-                        </VBox>
-                        <VBox width="50%">
-                            <Label
-                                text="End Date"
-                                required="true"
-                            />
-                            <DateTimePicker
-                                id="endDate"
-                                change="onDateChange"
-                            />
-                        </VBox>
-                    </HBox>
-
-                    <HBox
-                        class="sapUiSmallMarginTop"
-                        width="100%"
-                    >
-                        <VBox
-                            class="sapUiSmallMarginEnd"
-                            width="50%"
-                        >
-                            <Label
-                                text="Departure"
-                                required="true"
-                            />
-                            <ComboBox
-                                id="departure"
-                                width="100%"
-                            >
-                                <items>
-                                    <core:Item
-                                        key="1"
-                                        text="Departure from First Workplace"
+                        <content>
+                            <HBox width="100%">
+                                <VBox
+                                    width="25%"
+                                    class="roundedWhiteBox sapUiSmallMargin"
+                                    alignItems="Center"
+                                >
+                                    <Image
+                                        src="img/Logo.png"
+                                        alt="Company Logo"
+                                        decorative="false"
+                                        width="180px"
+                                        height="auto"
                                     />
-                                    <core:Item
-                                        key="2"
-                                        text="Departure from Home"
-                                    />
-                                </items>
-                            </ComboBox>
-                        </VBox>
-                        <VBox width="50%">
-                            <Label
-                                text="Arrival"
-                                required="true"
-                            />
-                            <ComboBox
-                                id="arrival"
-                                width="100%"
-                            >
-                                <items>
-                                    <core:Item
-                                        key="1"
-                                        text="Arrival at First Workplace"
-                                    />
-                                    <core:Item
-                                        key="1"
-                                        text="Arrival at Home"
-                                    />
-                                </items>
-                            </ComboBox>
-                        </VBox>
-                    </HBox>
-                    <HBox>
-                        <VBox class="sapUiSmallMarginTop">
-                            <Label
-                                text="Posting Date"
-                                required="true"
-                            />
-                            <DatePicker
-                                id="postingDate"
-                                value="{= ${now} }"
-                            />
-                        </VBox>
 
-                        <VBox
-                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
-                        >
-                            <Label
-                                text="Self Travel"
-                                required="true"
-                            />
-                            <ComboBox
-                                id="selfTravel"
-                                selectedKey="Yes"
-                            >
-                                <items>
-                                    <core:Item
-                                        key="Yes"
-                                        text="Yes"
+                                    <Text
+                                        text="Welcome to Travel Request App"
                                     />
-                                    <core:Item
-                                        key="No"
-                                        text="No"
+                                    <VBox
+                                        class="sapUiSmallMargin"
+                                        alignItems="Center"
+                                    >
+                                        <Text
+                                            text="{employeeModel>/name}"
+                                            class=" sapMTextBold"
+                                        />
+
+                                        <Text text="{employeeModel>/id}" />
+                                    </VBox>
+
+                                    <Text
+                                        class="sapUiLargeMarginTop"
+                                        text="Users can create a travel request through a form, review the entered details, and either save it as a draft or submit it for approval. Submitted requests can be approved or rejected by the approver."
                                     />
-                                </items>
-                            </ComboBox>
-                        </VBox>
+                                </VBox>
+                                <VBox
+                                    width="75%"
+                                    class="roundedWhiteBox sapUiSmallMargin"
+                                >
+                                    <HBox
+                                        xmlns="sap.m"
+                                        alignItems="Center"
+                                        justifyContent="Center"
+                                        class="stepBar"
+                                    >
+                                        <VBox alignItems="Center">
+                                            <Text
+                                                text="1"
+                                                class="stepCircleCurrent"
+                                            />
+                                            <Text
+                                                text="General Data"
+                                                class="stepTextCurrent "
+                                            />
+                                        </VBox>
 
-                        <VBox
-                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
-                        >
-                            <Label
-                                text="Place of Visit"
-                                required="true"
-                            />
-                            <ComboBox
-                                id="placeOfVisitComboBox"
-                                items="{
-                path: 'cities>/',
-                templateShareable: false
-            }"
-                                placeholder="Select or enter a city"
-                                change="onChangePlace"
-                                width="100%"
-                            >
-                                <core:Item
-                                    key="{cities>cityId}"
-                                    text="{cities>cityName}"
-                                />
-                            </ComboBox>
-                        </VBox>
-                    </HBox>
+                                        <Text
+                                            text="―"
+                                            class="stepLine"
+                                        />
 
-                    <Title
-                        text="Additional Information"
-                        level="H2"
-                        class="sapUiMediumMarginTop"
-                    />
-                    <HBox>
-                        <VBox class="sapUiSmallMarginTop">
-                            <Label
-                                text="Travel Type"
-                                required="true"
-                            />
-                            <ComboBox id="travelType">
-                                <items>
-                                    <core:Item
-                                        key="BusinessDomestic"
-                                        text="Business Travel - Domestic"
+                                        <VBox alignItems="Center">
+                                            <Text
+                                                text="2"
+                                                class="stepCircleDisabled"
+                                            />
+                                            <Text
+                                                text="Review and Send"
+                                                class="stepTextDisabled"
+                                            />
+                                        </VBox>
+
+                                        <Text
+                                            text="―"
+                                            class="stepLine"
+                                        />
+
+                                        <VBox alignItems="Center">
+                                            <Text
+                                                text="3"
+                                                class="stepCircleDisabled"
+                                            />
+                                            <Text
+                                                text="Completed"
+                                                class="stepTextDisabled"
+                                            />
+                                        </VBox>
+                                    </HBox>
+
+                                    <Title
+                                        text="General Data"
+                                        level="H2"
                                     />
-                                    <core:Item
-                                        key="BusinessInternational"
-                                        text="Business Travel - International"
+                                    <HBox
+                                        class="sapUiSmallMarginTop"
+                                        width="100%"
+                                    >
+                                        <VBox
+                                            class="sapUiSmallMarginEnd"
+                                            width="50%"
+                                        >
+                                            <Label
+                                                text="Start Date"
+                                                required="true"
+                                            />
+                                            <DateTimePicker
+                                                id="startDate"
+                                                change="onDateChange"
+                                            />
+                                        </VBox>
+                                        <VBox width="50%">
+                                            <Label
+                                                text="End Date"
+                                                required="true"
+                                            />
+                                            <DateTimePicker
+                                                id="endDate"
+                                                change="onDateChange"
+                                            />
+                                        </VBox>
+                                    </HBox>
+
+                                    <HBox
+                                        class="sapUiSmallMarginTop"
+                                        width="100%"
+                                    >
+                                        <VBox
+                                            class="sapUiSmallMarginEnd"
+                                            width="50%"
+                                        >
+                                            <Label
+                                                text="Departure"
+                                                required="true"
+                                            />
+                                            <ComboBox
+                                                id="departure"
+                                                width="100%"
+                                            >
+                                                <items>
+                                                    <core:Item
+                                                        key="1"
+                                                        text="Departure from First Workplace"
+                                                    />
+                                                    <core:Item
+                                                        key="2"
+                                                        text="Departure from Home"
+                                                    />
+                                                </items>
+                                            </ComboBox>
+                                        </VBox>
+                                        <VBox width="50%">
+                                            <Label
+                                                text="Arrival"
+                                                required="true"
+                                            />
+                                            <ComboBox
+                                                id="arrival"
+                                                width="100%"
+                                            >
+                                                <items>
+                                                    <core:Item
+                                                        key="1"
+                                                        text="Arrival at First Workplace"
+                                                    />
+                                                    <core:Item
+                                                        key="1"
+                                                        text="Arrival at Home"
+                                                    />
+                                                </items>
+                                            </ComboBox>
+                                        </VBox>
+                                    </HBox>
+                                    <HBox>
+                                        <VBox class="sapUiSmallMarginTop">
+                                            <Label
+                                                text="Posting Date"
+                                                required="true"
+                                            />
+                                            <DatePicker
+                                                id="postingDate"
+                                                value="{= ${now} }"
+                                            />
+                                        </VBox>
+
+                                        <VBox
+                                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
+                                        >
+                                            <Label
+                                                text="Self Travel"
+                                                required="true"
+                                            />
+                                            <ComboBox
+                                                id="selfTravel"
+                                                selectedKey="Yes"
+                                            >
+                                                <items>
+                                                    <core:Item
+                                                        key="Yes"
+                                                        text="Yes"
+                                                    />
+                                                    <core:Item
+                                                        key="No"
+                                                        text="No"
+                                                    />
+                                                </items>
+                                            </ComboBox>
+                                        </VBox>
+
+                                        <VBox
+                                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
+                                        >
+                                            <Label
+                                                text="Place of Visit"
+                                                required="true"
+                                            />
+                                            <ComboBox
+                                                id="placeOfVisitComboBox"
+                                                items="{
+                                                    path: 'cities>/',
+                                                    templateShareable: false
+                                                }"
+                                                placeholder="Select or enter a city"
+                                                change="onChangePlace"
+                                                width="100%"
+                                            >
+                                                <core:Item
+                                                    key="{cities>cityId}"
+                                                    text="{cities>cityName}"
+                                                />
+                                            </ComboBox>
+                                        </VBox>
+                                    </HBox>
+
+                                    <Title
+                                        text="Additional Information"
+                                        level="H2"
+                                        class="sapUiMediumMarginTop"
                                     />
-                                </items>
-                            </ComboBox>
-                        </VBox>
+                                    <HBox>
+                                        <VBox class="sapUiSmallMarginTop">
+                                            <Label
+                                                text="Travel Type"
+                                                required="true"
+                                            />
+                                            <ComboBox id="travelType">
+                                                <items>
+                                                    <core:Item
+                                                        key="BusinessDomestic"
+                                                        text="Business Travel - Domestic"
+                                                    />
+                                                    <core:Item
+                                                        key="BusinessInternational"
+                                                        text="Business Travel - International"
+                                                    />
+                                                </items>
+                                            </ComboBox>
+                                        </VBox>
 
-                        <VBox
-                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
-                        >
-                            <Label text="Purpose of Travel" />
-                            <Input id="purposeOfTravel" />
-                        </VBox>
+                                        <VBox
+                                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
+                                        >
+                                            <Label text="Purpose of Travel" />
+                                            <Input id="purposeOfTravel" />
+                                        </VBox>
 
-                        <VBox
-                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
-                        >
-                            <Label text="Estimated Costs" />
-                            <HBox>
-                                <Input
-                                    id="estimatedCosts"
-                                    type="Number"
-                                    liveChange=".onNumberOnly"
-                                />
-                                <Label
-                                    text="INR"
-                                    class=" sapUiTinyMarginBegin sapUiTinyMarginTop"
-                                />
+                                        <VBox
+                                            class="sapUiSmallMarginTop sapUiMediumMarginBegin"
+                                        >
+                                            <Label text="Estimated Costs" />
+                                            <HBox>
+                                                <Input
+                                                    id="estimatedCosts"
+                                                    type="Number"
+                                                    liveChange=".onNumberOnly"
+                                                />
+                                                <Label
+                                                    text="INR"
+                                                    class=" sapUiTinyMarginBegin sapUiTinyMarginTop"
+                                                />
+                                            </HBox>
+                                        </VBox>
+                                    </HBox>
+                                    <VBox class="sapUiSmallMarginTop">
+                                        <Label
+                                            text="Additional Travellers (non-employees)"
+                                        />
+                                        <Input
+                                            id="additionalTravellers"
+                                            placeholder="Name/Age/Sex"
+                                        />
+                                    </VBox>
+
+                                    <VBox class="sapUiSmallMarginTop">
+                                        <Label text="Advances" />
+                                        <Input
+                                            id="advances"
+                                            placeholder="0.00 Indian Rupee"
+                                            type="Number"
+                                            liveChange=".onNumberOnly"
+                                        />
+                                    </VBox>
+
+                                    <VBox class="sapUiSmallMarginTop">
+                                        <Label text="Cost Assignment" />
+                                        <Text
+                                            id="costAssignment"
+                                            text="100.00 % Cost Center 901010013 (HUMAN RESOURCES), Funds Center 901010013"
+                                        />
+                                    </VBox>
+
+                                    <Title
+                                        text="Travel Services"
+                                        level="H2"
+                                        class="sapUiSmallMarginTop"
+                                    />
+                                    <Text text="No travel services requested" />
+
+                                    <HBox
+                                        justifyContent="End"
+                                        class="sapUiSmallMarginTop"
+                                    >
+                                        <Button
+                                            text="Review"
+                                            type="Emphasized"
+                                            press="onReviewTravelRequest"
+                                            class="sapUiSmallMarginEnd"
+                                        />
+                                        <Button
+                                            text="Save Draft"
+                                            type="Emphasized"
+                                            press="onSaveDraft"
+                                        />
+                                    </HBox>
+                                </VBox>
                             </HBox>
-                        </VBox>
-                    </HBox>
-                    <VBox class="sapUiSmallMarginTop">
-                        <Label text="Additional Travellers (non-employees)" />
-                        <Input
-                            id="additionalTravellers"
-                            placeholder="Name/Age/Sex"
-                        />
-                    </VBox>
+                        </content>
+                    </TabContainerItem>
 
-                    <VBox class="sapUiSmallMarginTop">
-                        <Label text="Advances" />
-                        <Input
-                            id="advances"
-                            placeholder="0.00 Indian Rupee"
-                            type="Number"
-                            liveChange=".onNumberOnly"
-                        />
-                    </VBox>
-
-                    <VBox class="sapUiSmallMarginTop">
-                        <Label text="Cost Assignment" />
-                        <Text
-                            id="costAssignment"
-                            text="100.00 % Cost Center 901010013 (HUMAN RESOURCES), Funds Center 901010013"
-                        />
-                    </VBox>
-
-                    <Title
-                        text="Travel Services"
-                        level="H2"
-                        class="sapUiSmallMarginTop"
-                    />
-                    <Text text="No travel services requested" />
-
-                    <HBox
-                        justifyContent="End"
-                        class="sapUiSmallMarginTop"
+                    <!-- Tab 2 -->
+                    <TabContainerItem
+                        name="All Travel Requests"
+                        key="tab2"
+                        icon="sap-icon://menu"
                     >
-                        <Button
-                            text="Review"
-                            type="Emphasized"
-                            press="onReviewTravelRequest"
-                            class="sapUiSmallMarginEnd"
-                        />
-                        <Button
-                            text="Save Draft"
-                            type="Emphasized"
-                            press="onSaveDraft"
-                        />
-                    </HBox>
-                </VBox>
-            </HBox>
-            </content>
-                </TabContainerItem >
+                        <content>
+                            <VBox
+                                class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom"
+                                width="100%"
+                                renderType="Bare"
+                            >
+                                <HBox>
+                                    <Title
+                                        text="Employee ID: "
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                    <Title
+                                        text="EMP001"
+                                        level="H2"
+                                        class="sapUiSmallMarginBegin"
+                                    />
+                                </HBox>
 
-                <!-- Tab 2 -->
-                <TabContainerItem 
-                    name="Drafts"
-                    key="tab2"
-                    icon="sap-icon://document">
-                    <content>
-                    <VBox class="sapUiSmallMargin">
-                        <Label text="From"/>
-                        <Input placeholder="Enter source"/>
-                        <Label text="To"/>
-                        <Input placeholder="Enter destination"/>
-                        <Label text="Date"/>
-                        <DatePicker/>
-                    </VBox>
-                    </content>
-                </TabContainerItem >
+                                <VBox
+                                    class="roundedWhiteBox"
+                                    width="95%"
+                                >
+                                    <Title
+                                        text="This list shows all the travel requests you have created, along with their current status:"
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom sapUiSmallMarginTop"
+                                    />
 
-                <!-- Tab 3 -->
-                <TabContainerItem 
-                    name="All Travel Requests"
-                    key="tab3"
-                    icon="sap-icon://list">
-                    <content>
-                    <VBox class="sapUiSmallMargin">
-                        <Label text="Amount"/>
-                        <Input placeholder="Enter amount"/>
-                        <Label text="Remarks"/>
-                        <TextArea rows="4"/>
-                    </VBox>
-                    </content>
-                </TabContainerItem >
-            </items>
+                                    <VBox>
+                                        <Table
+                                            id="travelRequestTable"
+                                            inset="false"
+                                            items="{AlltravelData>/travelRequests}"
+                                        >
+                                            <headerToolbar />
+                                            <columns>
+                                                <Column width="25rem">
+                                                    <Text text="Request ID" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Start Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Estimated Cost"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Purpose of Visit"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Status" />
+                                                </Column>
+                                                <Column width="3rem" />
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{AlltravelData>ID}"
+                                                        />
+                                                        <Text
+                                                            text="{AlltravelData>startDate}"
+                                                        />
+                                                        <Text
+                                                            text="{AlltravelData>endDate}"
+                                                        />
 
-        </TabContainer>
+                                                        <Text
+                                                            text="{AlltravelData>estimatedCost}"
+                                                        />
+                                                        <Text
+                                                            text="{AlltravelData>purposeOfTravel}"
+                                                        />
+                                                        <!-- APPROVED STATUS DOT -->
+                                                        <ObjectStatus
+                                                            text="{
+                                                                path: 'AlltravelData>Approvedstatus',
+                                                                formatter: '.formatStatusText'
+                                                            }"
+                                                            state="{
+                                                                path: 'AlltravelData>Approvedstatus',
+                                                                formatter: '.formatStatusState'
+                                                            }"
+                                                        />
 
-          
+                                                        <Button
+                                                            icon="sap-icon://navigation-right-arrow"
+                                                            type="Transparent"
+                                                            class="blackIconBtn"
+                                                            press="onForwardArrowPressAll"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+
+                    <!-- Tab 3 -->
+                    <TabContainerItem
+                        name="Drafts"
+                        key="tab3"
+                        icon="sap-icon://document"
+                    >
+                        <content>
+                            <VBox
+                                class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom"
+                                width="100%"
+                                renderType="Bare"
+                            >
+                                <HBox>
+                                    <Title
+                                        text="Employee ID: "
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                    <Title
+                                        text="EMP001"
+                                        level="H2"
+                                        class="sapUiSmallMarginBegin"
+                                    />
+                                </HBox>
+
+                                <VBox
+                                    class="roundedWhiteBox"
+                                    width="95%"
+                                >
+                                    <Title
+                                        text="This list shows travel requests you have saved as drafts but not yet submitted for approval:"
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom sapUiSmallMarginTop"
+                                    />
+
+                                    <VBox>
+                                        <Table
+                                            id="draftTravelRequestTable"
+                                            inset="false"
+                                            items="{DraftData>/travelRequests}"
+                                        >
+                                            <headerToolbar />
+                                            <columns>
+                                                <Column width="25rem">
+                                                    <Text text="Request ID" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Start Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Estimated Cost"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Purpose of Visit"
+                                                    />
+                                                </Column>
+                                                <Column width="5rem" />
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem type="Active">
+                                                    <cells>
+                                                        <Text
+                                                            text="{DraftData>ID}"
+                                                        />
+                                                        <Text
+                                                            text="{DraftData>startDate}"
+                                                        />
+                                                        <Text
+                                                            text="{DraftData>endDate}"
+                                                        />
+
+                                                        <Text
+                                                            text="{DraftData>estimatedCost}"
+                                                        />
+                                                        <Text
+                                                            text="{DraftData>purposeOfTravel}"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://slim-arrow-right"
+                                                            type="Transparent"
+                                                            class="blackIconBtn"
+                                                            press="onForwardArrowPress"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+
+                    <!-- Tab 4 -->
+                    <TabContainerItem
+                        name="Approved"
+                        key="tab4"
+                        icon="sap-icon://verified"
+                    >
+                        <content>
+                            <VBox
+                                class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom"
+                                width="100%"
+                                renderType="Bare"
+                            >
+                                <HBox>
+                                    <Title
+                                        text="Employee ID: "
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                    <Title
+                                        text="EMP001"
+                                        level="H2"
+                                        class="sapUiSmallMarginBegin"
+                                    />
+                                </HBox>
+
+                                <VBox
+                                    class="roundedWhiteBox"
+                                    width="95%"
+                                >
+                                    <Title
+                                        text="This list displays the travel requests that have been reviewed and approved:"
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom sapUiSmallMarginTop"
+                                    />
+
+                                    <VBox>
+                                        <Table
+                                            id="approvedTravelRequestTable"
+                                            inset="false"
+                                            items="{ApprovedData>/travelRequests}"
+                                        >
+                                            <headerToolbar />
+                                            <columns>
+                                                <Column width="25rem">
+                                                    <Text text="Request ID" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Start Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Estimated Cost"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Purpose of Visit"
+                                                    />
+                                                </Column>
+                                                <Column width="3rem" />
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{ApprovedData>ID}"
+                                                        />
+                                                        <Text
+                                                            text="{ApprovedData>startDate}"
+                                                        />
+                                                        <Text
+                                                            text="{ApprovedData>endDate}"
+                                                        />
+
+                                                        <Text
+                                                            text="{ApprovedData>estimatedCost}"
+                                                        />
+                                                        <Text
+                                                            text="{ApprovedData>purposeOfTravel}"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://navigation-right-arrow"
+                                                            type="Transparent"
+                                                            class="blackIconBtn"
+                                                            press="onForwardArrowPressApproved"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+
+                    <!-- Tab 5 -->
+                    <TabContainerItem
+                        name="Rejected"
+                        key="tab5"
+                        icon="sap-icon://unpaid-leave"
+                    >
+                        <content>
+                            <VBox
+                                class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom"
+                                width="100%"
+                                renderType="Bare"
+                            >
+                                <HBox>
+                                    <Title
+                                        text="Employee ID: "
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                    <Title
+                                        text="EMP001"
+                                        level="H2"
+                                        class="sapUiSmallMarginBegin"
+                                    />
+                                </HBox>
+
+                                <VBox
+                                    class="roundedWhiteBox"
+                                    width="95%"
+                                >
+                                    <Title
+                                        text="This list contains travel requests that have been reviewed and rejected:"
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom sapUiSmallMarginTop"
+                                    />
+
+                                    <VBox>
+                                        <Table
+                                            id="rejectedTravelRequestTable"
+                                            inset="false"
+                                            items="{RejectedData>/travelRequests}"
+                                        >
+                                            <headerToolbar />
+                                            <columns>
+                                                <Column width="25rem">
+                                                    <Text text="Request ID" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Start Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Estimated Cost"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Purpose of Visit"
+                                                    />
+                                                </Column>
+                                                <Column width="3rem" />
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{RejectedData>ID}"
+                                                        />
+                                                        <Text
+                                                            text="{RejectedData>startDate}"
+                                                        />
+                                                        <Text
+                                                            text="{RejectedData>endDate}"
+                                                        />
+
+                                                        <Text
+                                                            text="{RejectedData>estimatedCost}"
+                                                        />
+                                                        <Text
+                                                            text="{RejectedData>purposeOfTravel}"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://navigation-right-arrow"
+                                                            type="Transparent"
+                                                            class="blackIconBtn"
+                                                            press="onForwardArrowPressRejected"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+
+                    <!-- Tab 6 -->
+                    <TabContainerItem
+                        name="Awaiting Approval"
+                        key="tab5"
+                        icon="sap-icon://pending"
+                    >
+                        <content>
+                            <VBox
+                                class="sapUiSmallMarginTop sapUiMediumMarginBegin sapUiMediumMarginEnd sapUiMediumMarginBottom"
+                                width="100%"
+                                renderType="Bare"
+                            >
+                                <HBox>
+                                    <Title
+                                        text="Employee ID: "
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom"
+                                    />
+                                    <Title
+                                        text="EMP001"
+                                        level="H2"
+                                        class="sapUiSmallMarginBegin"
+                                    />
+                                </HBox>
+
+                                <VBox
+                                    class="roundedWhiteBox"
+                                    width="95%"
+                                >
+                                    <Title
+                                        text="This list displays travel requests you have submitted and are pending approval:"
+                                        level="H2"
+                                        class="sapUiSmallMarginBottom sapUiSmallMarginTop"
+                                    />
+
+                                    <VBox>
+                                        <Table
+                                            id="nonReviewedTravelRequestTable"
+                                            inset="false"
+                                            items="{NotReviewedData>/travelRequests}"
+                                        >
+                                            <headerToolbar />
+                                            <columns>
+                                                <Column width="25rem">
+                                                    <Text text="Request ID" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="Start Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text text="End Date" />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Estimated Cost"
+                                                    />
+                                                </Column>
+                                                <Column>
+                                                    <Text
+                                                        text="Purpose of Visit"
+                                                    />
+                                                </Column>
+                                                <Column width="3rem" />
+                                            </columns>
+                                            <items>
+                                                <ColumnListItem>
+                                                    <cells>
+                                                        <Text
+                                                            text="{NotReviewedData>ID}"
+                                                        />
+                                                        <Text
+                                                            text="{NotReviewedData>startDate}"
+                                                        />
+                                                        <Text
+                                                            text="{NotReviewedData>endDate}"
+                                                        />
+
+                                                        <Text
+                                                            text="{NotReviewedData>estimatedCost}"
+                                                        />
+                                                        <Text
+                                                            text="{NotReviewedData>purposeOfTravel}"
+                                                        />
+                                                        <Button
+                                                            icon="sap-icon://navigation-right-arrow"
+                                                            type="Transparent"
+                                                            class="blackIconBtn"
+                                                            press="onForwardArrowPressNotReviewed"
+                                                        />
+                                                    </cells>
+                                                </ColumnListItem>
+                                            </items>
+                                        </Table>
+                                    </VBox>
+                                </VBox>
+                            </VBox>
+                        </content>
+                    </TabContainerItem>
+                </items>
+            </TabContainer>
         </content>
     </Page>
 </mvc:View>

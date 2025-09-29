@@ -124,6 +124,11 @@
           "pattern": "ReviewTravelScreen/{travelId}",
           "name": "ReviewTravelScreen",
           "target": "ReviewTravelScreen"
+        },
+        {
+          "pattern": "ReviewDraftRequest/{travelId}",
+          "name": "ReviewDraftRequest",
+          "target": "ReviewDraftRequest"
         }
       ],
       "targets": {
@@ -134,6 +139,11 @@
         "ReviewTravelScreen": {
           "id": "ReviewTravelScreen",
           "name": "ReviewTravelScreen",
+          "viewLevel": 2
+        },
+        "ReviewDraftRequest": {
+          "id": "ReviewDraftRequest",
+          "name": "ReviewDraftRequest",
           "viewLevel": 2
         }
       }

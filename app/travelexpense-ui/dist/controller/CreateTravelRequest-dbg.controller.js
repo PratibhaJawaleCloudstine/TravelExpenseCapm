@@ -10,7 +10,7 @@ sap.ui.define([
       // Initialization logic if needed
       const oCityModel = new sap.ui.model.json.JSONModel();
       oCityModel.loadData("model/cities.json");
-      this.getView().setModel(oCityModel, "cities");
+      this.getOwnerComponent().setModel(oCityModel, "cities");
 
 
       const oData = {
@@ -27,9 +27,9 @@ sap.ui.define([
       this.getView().setModel(this.getOwnerComponent().getModel());
 
       this.getOwnerComponent()
-      .getRouter()
-      .getRoute("RouteCreateTravelRequest")  // replace with your actual route name
-      .attachPatternMatched(this._onRouteMatched, this);
+        .getRouter()
+        .getRoute("RouteCreateTravelRequest")  // replace with your actual route name
+        .attachPatternMatched(this._onRouteMatched, this);
 
     },
 
@@ -38,7 +38,159 @@ sap.ui.define([
       console.log("Returned to CreateTravelRequest screen");
       const oJSONModel = new sap.ui.model.json.JSONModel();
       this.getOwnerComponent().setModel(oJSONModel, "travelData");
-      // You can refresh models, reset forms, etc.
+
+      const oModel = this.getOwnerComponent().getModel(); // OData V4 model
+
+      // Bind the list (collection) context
+      const oListBinding = oModel.bindList("/TravelRequests");
+
+      oListBinding.requestContexts().then((aContexts) => {
+        // Convert contexts to plain JSON objects
+        const aData = aContexts.map(oContext => oContext.getObject());
+
+
+        console.log("All TravelRequests:", aData);
+
+        // Normalize values
+        const approvedRequests = aData.filter(r => (r.Approvedstatus || "").toLowerCase() === "approved");
+        const rejectedRequests = aData.filter(r => (r.Approvedstatus || "").toLowerCase() === "rejected");
+        const notReviewed = aData.filter(r => (r.Approvedstatus || "").toLowerCase() === "awaiting approval");
+        const draftRequests = aData.filter(r => (r.status || "").toLowerCase() === "draft");
+        const allRequests = aData;
+
+        // Assign JSON models for each tab
+        this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({ travelRequests: allRequests }), "AlltravelData");
+        this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({ travelRequests: approvedRequests }), "ApprovedData");
+        this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({ travelRequests: rejectedRequests }), "RejectedData");
+        this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({ travelRequests: notReviewed }), "NotReviewedData");
+        this.getOwnerComponent().setModel(new sap.ui.model.json.JSONModel({ travelRequests: draftRequests }), "DraftData");
+
+        console.log("All:", allRequests.length,
+          "Approved:", approvedRequests.length,
+          "Rejected:", rejectedRequests.length,
+          "NotReviewed:", notReviewed.length,
+          "Draft:", draftRequests.length);
+
+        // Print All travel data
+        console.log(this.getOwnerComponent().getModel("AlltravelData").getData());
+
+        // Print Approved data
+        console.log(this.getOwnerComponent().getModel("ApprovedData").getData());
+
+        // Print Rejected data
+        console.log(this.getOwnerComponent().getModel("RejectedData").getData());
+
+        // Print Not Reviewed data
+        console.log(this.getOwnerComponent().getModel("NotReviewedData").getData());
+
+        // Print Draft data
+        console.log(this.getOwnerComponent().getModel("DraftData").getData());
+
+
+
+      }).catch((oError) => {
+        console.error("Failed to fetch TravelRequests:", oError);
+        sap.m.MessageBox.error("Error fetching travel requests.");
+      });
+
+    },
+
+
+    onForwardArrowPress: function (oEvent) {
+      const oContextDraftData = oEvent.getSource().getBindingContext("DraftData");
+      const oRowData = oContextDraftData.getObject();
+      var travelIdL = oRowData.ID;
+
+      this.getOwnerComponent().getRouter().navTo("ReviewDraftRequest", {
+        travelId: travelIdL
+      });
+
+    },
+
+    onForwardArrowPressApproved: function (oEvent) {
+      const oContextApprovedData = oEvent.getSource().getBindingContext("ApprovedData");
+      const oRowData = oContextApprovedData.getObject();
+      var travelIdL = oRowData.ID;
+
+      this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+        travelId: travelIdL
+      });
+
+    },
+
+    onForwardArrowPressRejected: function (oEvent) {
+      const oContextRejectedData = oEvent.getSource().getBindingContext("RejectedData");
+      const oRowData = oContextRejectedData.getObject();
+      var travelIdL = oRowData.ID;
+
+      this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+        travelId: travelIdL
+      });
+
+    },
+
+
+    onForwardArrowPressNotReviewed: function (oEvent) {
+      const oContextNotReviewedData = oEvent.getSource().getBindingContext("NotReviewedData");
+      const oRowData = oContextNotReviewedData.getObject();
+      var travelIdL = oRowData.ID;
+
+      this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+        travelId: travelIdL
+      });
+
+    },
+
+    onForwardArrowPressAll: function (oEvent) {
+      const oContextAlltravelData = oEvent.getSource().getBindingContext("AlltravelData");
+      const oRowData = oContextAlltravelData.getObject();
+      var travelIdL = oRowData.ID;
+
+      if (oRowData.Approvedstatus === undefined ||  oRowData.Approvedstatus === null || oRowData.Approvedstatus === "") {
+        this.getOwnerComponent().getRouter().navTo("ReviewDraftRequest", {
+          travelId: travelIdL
+        });
+      } else {
+        this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
+          travelId: travelIdL
+        });
+      }
+
+
+
+
+
+    },
+
+
+    formatStatusText: function (sValue) {
+      if (!sValue) {
+        return "Draft";   // show default text
+      }
+      const lower = sValue.toLowerCase();
+
+      if (lower === "awaiting approval") {
+        return "Awaiting Approval";
+      }
+
+
+      return lower.charAt(0).toUpperCase() + lower.slice(1);
+    },
+
+    formatStatusState: function (sValue) {
+      if (!sValue) {
+        return "Warning";
+      }
+      sValue = sValue.toLowerCase();
+      console.log(sValue);
+      if (sValue === "approved") {
+        return "Success"; // Green
+      } else if (sValue === "rejected") {
+        return "Error";   // Red
+      } else if (sValue === "awaiting approval") {
+        return "Information"; // Blue
+      }
+      return "None"; // fallback
     },
 
     onReview: function () {
@@ -68,7 +220,7 @@ sap.ui.define([
       MessageToast.show("Review data captured. Check console.");
     },
 
- 
+
 
     onChangePlace: function (oEvent) {
       const sValue = oEvent.getParameter("value");
@@ -179,14 +331,14 @@ sap.ui.define([
       }
 
       if (!purposeOfTravel) {
-       purposeOfTravel = "";
+        purposeOfTravel = "";
       }
 
       if (!estimatedCosts) {
         estimatedCosts = 0.00;
-       }
+      }
 
-       var travelStatus = "Review";
+      var travelStatus = "Review";
 
       const travelRequestData = {
         "@odata.context": "$metadata#TravelRequests/$entity",
@@ -222,9 +374,10 @@ sap.ui.define([
       });
     },
 
+
     onSaveDraft: function () {
       var oModel = this.getView().getModel(); // OData V4 model
-      
+
       const oView = this.getView();
       const startdate = oView.byId("startDate").getDateValue();
       if (!startdate || isNaN(startdate.getTime())) {
@@ -300,14 +453,14 @@ sap.ui.define([
       }
 
       if (!purposeOfTravel) {
-       purposeOfTravel = "";
+        purposeOfTravel = "";
       }
 
       if (!estimatedCosts) {
         estimatedCosts = 0.00;
-       }
-       var travelId = crypto.randomUUID();
-       var travelStatus = "Draft";
+      }
+      var travelId = crypto.randomUUID();
+      var travelStatus = "Draft";
 
       this.getView().setBusy(true);
 
@@ -315,7 +468,7 @@ sap.ui.define([
       var oListBinding = oModel.bindList("/TravelRequests", undefined, undefined, undefined, {
         $$updateGroupId: "travelGroup"
       });
-     
+
 
       // Step 2: Create entry (this returns a context)
       oListBinding.create({
@@ -343,7 +496,7 @@ sap.ui.define([
 
       // Step 3: Submit the batch
       oModel.submitBatch("travelGroup").then(() => {
-        sap.m.MessageToast.show("Travel request "+ travelId +" saved successfully.");
+        sap.m.MessageToast.show("Travel request " + travelId + " saved successfully.");
         this.getOwnerComponent().getRouter().navTo("ReviewTravelScreen", {
           travelId: travelId
         });
@@ -354,7 +507,7 @@ sap.ui.define([
         // Hide loader
         this.getView().setBusy(false);
       });
-      
+
     }
 
 
