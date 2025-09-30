@@ -1,19 +1,20 @@
 // srv/utils/tokenHelper.js
 const xsenv = require('@sap/xsenv');
-const xssec = require('@sap/xssec');
-const util = require('util');
 const axios = require('axios');
 
-xsenv.loadEnv(); // loads default-env.json automatically
+// Load env (default-env.json for local, VCAP_SERVICES on BTP)
+xsenv.loadEnv();
 
-/**
- * Get a client-credentials token for XSUAA
- */
 async function getXsuaaToken() {
-  const services = xsenv.getServices({ uaa: { tag: 'xsuaa' } });
-  const credentials = services.uaa;
+  // Get XSUAA service by its name (must match mta.yaml resource name)
+  const services = xsenv.getServices({ xsuaa: { name: 'TravelExpenses-auth' } });
+  const credentials = services.xsuaa;
 
-  const options = {
+  if (!credentials) {
+    throw new Error("❌ XSUAA service 'TravelExpenses-auth' not found. Check mta.yaml or default-env.json.");
+  }
+
+  const response = await axios({
     url: `${credentials.url}/oauth/token`,
     method: 'POST',
     auth: {
@@ -23,9 +24,8 @@ async function getXsuaaToken() {
     params: {
       grant_type: 'client_credentials'
     }
-  };
+  });
 
-  const response = await axios(options);
   return response.data.access_token;
 }
 

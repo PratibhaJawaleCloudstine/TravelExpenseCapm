@@ -61,7 +61,7 @@ modules:
     type: com.sap.application.content
     path: .
     requires:
-      - name: TravelExpenses-repo-host   # ✅ corrected
+      - name: TravelExpenses-repo-host # ✅ corrected
         parameters:
           content-target: true
     parameters:
@@ -87,7 +87,8 @@ modules:
         - npm run build:cf
         - npm ci
         - npm run build
-      supported-platforms: []
+      supported-platforms:
+        []
 
   - name: TravelExpenses-app-deployer
     type: com.sap.application.content
@@ -95,7 +96,7 @@ modules:
     requires:
       - name: TravelExpenses-auth
       - name: srv-api
-      - name: TravelExpenses-repo-host   # ✅ corrected
+      - name: TravelExpenses-repo-host # ✅ corrected
         parameters:
           content-target: true
           config:
@@ -134,10 +135,10 @@ modules:
         parameters:
           service-key:
             name: TravelExpenses-auth-key
-      - name: TravelExpenses-repo-host   # ✅ corrected
+      - name: TravelExpenses-repo-host # ✅ corrected
         parameters:
           service-key:
-            name: TravelExpenses-repo-host-key   # ✅ corrected
+            name: TravelExpenses-repo-host-key # ✅ corrected
       - name: srv-api
       - name: TravelExpenses-destination-service
         parameters:
@@ -150,8 +151,8 @@ modules:
           existing_destinations_policy: update
           destinations:
             - Name: TravelExpenses-html5-repository
-              ServiceInstanceName: TravelExpenses-repo-host   # ✅ corrected
-              ServiceKeyName: TravelExpenses-repo-host-key    # ✅ corrected
+              ServiceInstanceName: TravelExpenses-repo-host # ✅ corrected
+              ServiceKeyName: TravelExpenses-repo-host-key # ✅ corrected
               sap.cloud.service: TravelExpenses.service
             - Name: TravelExpenses-auth
               Authentication: OAuth2UserTokenExchange
@@ -185,7 +186,7 @@ resources:
     type: org.cloudfoundry.managed-service
     parameters:
       service: html5-apps-repo
-      service-name: TravelExpenses-repo-host    # ✅ must match your instance
+      service-name: TravelExpenses-repo-host # ✅ must match your instance
       service-plan: app-host
 
   - name: TravelExpenses-repo-runtime

@@ -119,7 +119,7 @@
                                                 text="Start Date"
                                                 required="true"
                                             />
-                                            <DateTimePicker
+                                            <DatePicker
                                                 id="startDate"
                                                 change="onDateChange"
                                             />
@@ -129,7 +129,7 @@
                                                 text="End Date"
                                                 required="true"
                                             />
-                                            <DateTimePicker
+                                            <DatePicker
                                                 id="endDate"
                                                 change="onDateChange"
                                             />

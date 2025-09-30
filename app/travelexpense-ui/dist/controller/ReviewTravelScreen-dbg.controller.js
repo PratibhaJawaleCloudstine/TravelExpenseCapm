@@ -247,7 +247,7 @@ sap.ui.define([
                   success: function (response) {
                     sap.m.MessageToast.show("Travel request " + this.travelId + " is send for approval.");
                     view.setBusy(false);
-                    this.onPreviousStep();
+                    that.getOwnerComponent().getRouter().navTo("RouteCreateTravelRequest", true);
                   },
                   error: function (xhr, status, error) {
                     sap.m.MessageBox.error("Failed to start workflow: " + xhr.responseText);
@@ -314,12 +314,13 @@ sap.ui.define([
           } else if (this.selectedOption === "Approve") {
             sap.m.MessageToast.show("Travel request " + travelId + " is send for approval.");
           }
+          that.getOwnerComponent().getRouter().navTo("RouteCreateTravelRequest", true);
         }).catch((oError) => {
           sap.m.MessageBox.error("Error saving travel request: " + oError.message);
         }).finally(() => {
           // Hide loader
           this.getView().setBusy(false);
-          this.onPreviousStep();
+          that.getOwnerComponent().getRouter().navTo("RouteCreateTravelRequest", true);
 
         });
       } else if (this.selectedOption === "SaveApprove") { //travel request is not saved yet.. so now save and then send for approval
@@ -402,7 +403,7 @@ sap.ui.define([
           // Hide loader
           this.getView().setBusy(false);
 
-          this.onPreviousStep();
+          that.getOwnerComponent().getRouter().navTo("RouteCreateTravelRequest", true);
 
         });
       }

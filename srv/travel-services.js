@@ -1,43 +1,27 @@
 
-
+const cds = require('@sap/cds');
 const axios = require('axios');
-const xsenv = require('@sap/xsenv');
+const { getXsuaaToken } = require('./utils/tokenHelper'); 
 
+// Get CDS entities
+const { TravelRequests } = cds.entities;
 
 module.exports = async function (srv) {
-  const { TravelRequests } = srv.entities;
-
-    // Helper function to fetch token from XSUAA
-  async function getXsuaaToken() {
-    const services = xsenv.getServices({ uaa: { tag: 'xsuaa' } });
-    const credentials = services.uaa;
-
-    const response = await axios({
-      url: `${credentials.url}/oauth/token`,
-      method: 'POST',
-      auth: {
-        username: credentials.clientid,
-        password: credentials.clientsecret
-      },
-      params: {
-        grant_type: 'client_credentials'
-      }
-    });
-
-    return response.data.access_token;
-  }
-
+// === Action: Trigger Workflow ===
   srv.on('startTravelWorkflow', async (req) => {
     try {
       const payload = JSON.parse(req.data.travelData);
 
-      
-      // 🔹 Fetch fresh JWT from XSUAA
+      // 🔑 Fetch token dynamically from tokenHelper
       const token = await getXsuaaToken();
-      console.log("token : "+token);
+
+      // Workflow REST API URL (can be set in default-env.json as WORKFLOW_REST_URL)
+      const workflowUrl =
+        process.env.WORKFLOW_REST_URL ||
+        'https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com/workflow/rest/v1';
 
       const response = await axios.post(
-        'https://spa-api-gateway-bpi-us-prod.cfapps.us10.hana.ondemand.com/workflow/rest/v1/workflow-instances',
+        `${workflowUrl}/workflow-instances`,
         {
           definitionId: "us10.6440fac5trial.travelexpenses.tavelExpensesProcess",
           context: payload

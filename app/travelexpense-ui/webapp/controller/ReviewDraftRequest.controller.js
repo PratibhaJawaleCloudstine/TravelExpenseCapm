@@ -364,6 +364,7 @@ console.log(formPostingDate);
           travelId: travelId
         });
 
+        that.getOwnerComponent().getRouter().navTo("RouteCreateTravelRequest", true);
       }).catch((oError) => {
         sap.m.MessageBox.error("Error saving travel request: " + oError.message);
       }).finally(() => {

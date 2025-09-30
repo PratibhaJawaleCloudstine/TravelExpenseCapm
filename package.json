@@ -38,27 +38,34 @@
     "build": "rimraf resources mta_archives && mbt build --mtar archive",
     "deploy": "cf deploy mta_archives/archive.mtar --retries 1"
   },
- "cds": {
-  "requires": {
-    "uaa": {
-      "kind": "xsuaa",
-      "name": "TravelExpenses-auth"
-    },
-    "destination": {
-      "kind": "destination",
-      "vcap": {
-        "label": "destination",
-        "plan": "lite"
-      }
-    },
-    "[production]": {
-      "auth": "xsuaa",
-      "db": "hana"
-    },
-    "destinations": true,
-    "html5-runtime": true,
-    "workzone": true
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana",
+        "model": [
+          "db"
+        ],
+        "service": "TravelExpenses-db"
+        
+      },
+      "uaa": {
+        "kind": "xsuaa",
+        "name": "TravelExpenses-auth"
+      },
+      "destination": {
+        "kind": "destination",
+        "vcap": {
+          "label": "destination",
+          "plan": "lite"
+        }
+      },
+      "[production]": {
+        "auth": "xsuaa",
+        "db": "hana"
+      },
+      "destinations": true,
+      "html5-runtime": true,
+      "workzone": true
+    }
   }
-}
-
 }
